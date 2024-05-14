@@ -59,7 +59,7 @@ There will not be enough time in the workshop to cover all of `macpan2`, so ther
 The overall goal of the workshop is to train epidemiological modellers to use `macpan2` software in their efforts to use compartmental modelling to support public health. Each [session](#schedule) will cover techniques associated with one step in the [model refinement cycle](#background).
 
 <!-- omit from toc -->
-### Exploring Model Simulations
+### Exploration
 
 Participants will learn how to do the following types of tasks required for exploring model simulations.
 
@@ -102,8 +102,9 @@ The [companion material](#materials) will describe how to make the following mod
 * Add/remove compartments or flows amongst compartments (e.g., a compartment for pathogen concentration in wastewater).
 * Add behavioural responses to outbreaks.
 * Filter numbers of cases to account for reporting delays, under-reporting, and weekend effects.
-* Add schedules of parameter variation in response to exogeneous factors (e.g. transmission rate in response to vaccine supply, school term schedules).
-* Add stochastic exogeneous factors (e.g. importation).
+* Add schedules of parameter variation in response to exogeneous factors (e.g., transmission rate in response to vaccine supply, school term schedules).
+* Add stochastic exogeneous factors (e.g., importation).
+* Add/remove/modify vital dynamics (i.e., birth and death).
 
 <!-- omit from toc -->
 #### Epidemiological Model Summaries
@@ -125,7 +126,7 @@ The [companion material](#materials) will describe how to cast an existing model
 * Discrete-time recursion with process error (using the [Euler-multinomial distribution](https://kingaa.github.io/manuals/pomp/html/eulermultinom.html)).
 
 <!-- omit from toc -->
-### Parameterizing for Specific Goals
+### Parameterization
 
 Participants will learn how to do the following types of tasks required for parameterizing models for making inferences about a particular population and epidemiological problem.
 
@@ -140,6 +141,7 @@ Participants will learn how to do the following types of tasks required for para
 
 The [companion material](#materials) will describe how to use the following techniques to calibrate observed data using trajectory matching.
 
+* Recovering parameter values by calibrating to data simulated from the model being calibrated. This is a useful sanity check.
 * Relate simulations of specific model variables to observed versions of those variables.
 * Model over-dispersion using the negative-binomial distribution.
 * Manipulate optimizer settings when troubleshooting lack of convergence.
@@ -158,7 +160,7 @@ The [companion material](#materials) will describe how to calibrate the initial 
 
 
 <!-- omit from toc -->
-### Making Inferences
+### Inference
 
 Participants will learn how to make the following types of inferences using realistically parameterized models.
 
@@ -171,7 +173,36 @@ Participants will learn how to make the following types of inferences using real
 
 
 <!-- omit from toc -->
-### Adding Model Structure
+### Stratification
+
+Participants will learn the following stratification strategies.
+
+- [ ] [Cartesian product models](#cartesian-product-models) that stratify every compartment in the same way (e.g. by age, location).
+- [ ] [Stratify infectious compartments](#stratify-infectious-compartments) (e.g. by symptom status).
+- [ ] Expand a compartment into a linear chains of compartments, to simulate different distributions of time spent in the compartment.
+- [ ] Combine single-strain models into multi-strain models.
+- [ ] Stratify compartments based on immunity status. This is particularly useful in cases where immunity is partial, can wane, and is caused by a mixture of past infection, vaccination, and cross immunity due to associated diseases.
+
+<!-- omit from toc -->
+#### Cartesian product models
+
+The [companion material](#materials) will describe the following types of stratification with Cartesian product models.
+
+* Stratified by age group.
+* Spatially stratified such that locations are completely isolated.
+* Neighborhood spatial models where compartments that are geographically close can interact.
+* Stratified by vaccine status.
+
+
+<!-- omit from toc -->
+#### Stratify infectious compartments
+
+The [companion material](#materials) will describe the following types of stratification of infectious compartments.
+
+* Stratified by symptom status (e.g. mild, severe).
+* Stratified by isolation status (e.g. hospitalized, ICU, self-isolation).
+* Stratified by the outcome of a diagnostic test (e.g. a compartment for individuals with a false positive test).
+
 
 Population Structure Library The pathogen models in our library will be complemented by a library of population structures, including tools for analyzing age-structured mixing, travel, hospitalization and other isolation scenarios, and socio-economic status. We will use a modular approach that will allow our pathogen models to be combined with one or more population structures to rapidly produce appropriate models for a particular context.
 
@@ -181,6 +212,14 @@ Population Structure Library The pathogen models in our library will be compleme
 
 
 ## Outcomes
+
+After participating in the workshop, modellers will be able to do the following.
+
+* Determine if compartmental modelling is an appropriate tool for a particular applied public health problem.
+* Use `macpan2` to create a compartmental model for a real public health problem by following the [model refinement cycle](#background).
+* Navigate the [documentation](https://canmod.github.io/macpan2) and the [workshop companion material](#materials) to learn how to solve compartmental modelling problems that `macpan2` is able to solve.
+* Suggest improvements to `macpan2`.
+
 
 ## Schedule
 
