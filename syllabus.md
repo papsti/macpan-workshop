@@ -17,7 +17,11 @@ This is a (currently draft) syllabus for a workshop on using [`macpan2`](https:/
 
 ## Instructor
 
-Steve Walker (swalk@mcmaster.ca, [github](https://github.com/stevencarlislewalker))
+Steve Walker 
+
+swalk@mcmaster.ca
+
+https://github.com/stevencarlislewalker
 
 
 ## Audience
