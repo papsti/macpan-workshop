@@ -23,10 +23,10 @@ Steve Walker  –  swalk@mcmaster.ca  –  https://github.com/stevencarlislewalk
 
 ## Audience
 
-We assume that workshop participants are professional epidemiological modellers who use, or want to use, compartmental models to address public health issues. The material is specifically tailored to such modellers at the public health agency of Canada.
+We assume that workshop participants are professional epidemiological modellers who use, or want to use, compartmental models to address public health issues. The material is specifically tailored to such modellers at the [Public Health Agency of Canada](https://www.canada.ca/en/public-health.html).
 
 Without [preparation](#preparation), participants should be comfortable with the following.
-* Basic ideas and terminology about [compartmental models in epidemiology](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology).
+* Basic terminology and ideas about [compartmental models in epidemiology](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology).
 * Some experience coding to solve scientific problems.[^Rfamiliarity]
 
 
@@ -48,7 +48,7 @@ The final stratification step will increase model complexity, which has both adv
 
 We stress the importance of data and other factual inputs, including expert opinions, into the modelling process. We are concerned with modelling specific real-world problems, and so none of the steps should be too abstract.
 
-We will use this model refinement cycle to provide context when concepts are introduced in the workshop. The instructor will take a modelling example through one cycle throughout the workshop (TODO: what should this example be?). Participants will be given time to try some of these techniques on [their own models that they have come prepared with](#suggested-preparation).
+We will use this model refinement cycle to provide context when concepts are introduced in the workshop. The instructor will take a modelling example through one cycle during the workshop (TODO: what should this example be?). Participants will be given time to try some of these techniques on [their own models that they have come prepared with](#suggested-preparation).
 
 ## Materials
 
@@ -179,7 +179,7 @@ Participants will learn the following stratification strategies.
 
 - [ ] [Cartesian product models](#cartesian-product-models) that stratify every compartment in the same way (e.g. by age, location).
 - [ ] [Stratify infectious compartments](#stratify-infectious-compartments) (e.g. by symptom status).
-- [ ] Expand a compartment into a linear chains of compartments, to simulate different distributions of time spent in the compartment.
+- [ ] Expand a single compartment into a sequential chain, to simulate different distributions of time spent in that compartment.
 - [ ] Combine single-strain models into multi-strain models.
 - [ ] Stratify compartments based on immunity status. This is particularly useful in cases where immunity is partial, can wane, and is caused by a mixture of past infection, vaccination, and cross immunity due to associated diseases.
 
@@ -201,14 +201,7 @@ The [companion material](#materials) will describe the following types of strati
 
 * Stratified by symptom status (e.g. mild, severe).
 * Stratified by isolation status (e.g. hospitalized, ICU, self-isolation).
-* Stratified by the outcome of a diagnostic test (e.g. a compartment for individuals with a false positive test).
-
-
-Population Structure Library The pathogen models in our library will be complemented by a library of population structures, including tools for analyzing age-structured mixing, travel, hospitalization and other isolation scenarios, and socio-economic status. We will use a modular approach that will allow our pathogen models to be combined with one or more population structures to rapidly produce appropriate models for a particular context.
-
-
-* boxes for tracking symptom status or biomarkers
-* We will also provide tools to incorporate different assumptions (or information) about test reliability.
+* Stratify to incorporate different assumptions (or information) about diagnostic test reliability.
 
 
 ## Outcomes
