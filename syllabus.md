@@ -8,6 +8,7 @@ This is a (currently draft) syllabus for a workshop on using [`macpan2`](https:/
 - [Instructor](#instructor)
 - [Audience](#audience)
 - [Background](#background)
+- [Materials](#materials)
 - [Objectives](#objectives)
 - [Outcomes](#outcomes)
 - [Schedule](#schedule)
@@ -32,30 +33,37 @@ Although participants familiar with [R](https://www.r-project.org/) will be more
 
 ## Background
 
-Applied compartmental modelling is a multi-faceted topic. We conceive of the following model refinement cycle, as the key aspect of applied compartmental modelling for which `macpan2` is designed. In this workshop we will strongly encourage modellers to follow the steps in this cycle in their own work.
+Applied compartmental modelling is a multi-faceted topic. The following model refinement cycle describes the aspects of this topic for which `macpan2` is designed. In this workshop we will strongly encourage modellers to follow the steps in this cycle in their own work.
 
 ![modeling-cycle](modelling-cycle.svg)
 
-We have learned from our experience in applied public health modelling that it is better to close the loop as quickly as possible, rather than try to produce the perfect model outright. Keeping the scope of each step as limited as possible is useful for avoiding [analysis paralysis](https://en.wikipedia.org/wiki/Analysis_paralysis). Every time we get back to the **infer** step we have another chance of providing valuable inputs to the public health debate, and so we want to do this as often as possible. And if we neither skip nor linger on any of the steps since the last set of inferences were made, we are more likely to have both a clear and simple description of how and why the inferences were made.
+We have learned from our experience in applied public health modelling that it is better to close the loop as quickly as possible, rather than trying to produce the perfect model outright. Keeping the scope of each step as limited as possible is useful for avoiding [analysis paralysis](https://en.wikipedia.org/wiki/Analysis_paralysis). Every time we get back to the **infer** step we have another chance of providing valuable inputs to the public health debate, and so we want to do this as often as possible. And if we neither skip nor linger on any of the steps since the last set of inferences were made, we are more likely to have both a clear and simple description of how and why the inferences were made.
 
-We stress the importance of data and other external inputs into the modelling process. This is applied modelling for specific real-world problems, and so none of the steps can be completely abstract. We have found that modelling issues that are well-understood abstractly (e.g. we do not really need another measles model to tell us that we need more vaccination), it is often worth expressing such near-universal truths as models of the specific population of concern.
+We stress the importance of data and other factual inputs into the modelling process. We are concerned with modelling specific real-world problems, and so none of the steps should be too abstract. Even when a general problem is well understood (e.g., we do not need another measles model to convince us of the importance of vaccination), we have found that public health debates often benefit from expressing such near-universal truths as models of the specific population of concern.
+
+## Materials
+
+There will not be enough time in the workshop to cover all of `macpan2`, so there will be a companion set of workshop materials (to be produced in a subsequent milestone) that will cover all of the options available to modellers. In the workshop, we will follow one example through one full iteration of the [model refinement cycle](#background). Variations on each skill that is covered will be described in the companion material.
 
 ## Objectives
 
-The overall goal of the workshop is to train epidemiological modellers to use the `macpan2` software in their efforts to use compartmental modelling to support public health. Specific workshop goals can be categorized as part of a particular step within the above model refinement cycle.
+The overall goal of the workshop is to train epidemiological modellers to use `macpan2` software in their efforts to use compartmental modelling to support public health. We categorize the specific workshop goals as skills that will be used during a particular step within the [model refinement cycle](#background).
 
 <!-- omit from toc -->
-### Model Exploration
+### Exploring Model Simulations
 
-Participants will learn how to do the following.
+Participants will learn how to do the following tasks required for exploring model simulations.
 
-* Find candidate models in the `macpan2` [library](https://canmod.github.io/macpan2/articles/example_models) of starter models.
-* Prepare relevant data so that it can be compared with `macpan2` simulation output, both visually and numerically.[^1]
-* Make modifications to models in the library.
-* Compute epidemiological summaries ($\mathcal{R}_0$, $\mathcal{R}_t$, and moments of the generation interval distribution).
-* Choose how the dynamical system is solved (e.g., discrete-time recursion, ODE solvers, stochastic simulation).
+- [ ]  Find candidate simulation models in the `macpan2` [library](#library-models) of starter models.
+- [ ] Prepare [certain types of data](#types-of-data) so that they can be compared with `macpan2` simulation output, both visually and numerically.[^1]
+- [ ] Make [modifications to models](#model-modification-tools) in the library.
+- [ ] Compute epidemiological summaries ($\mathcal{R}_0$, $\mathcal{R}_t$, and moments of the generation interval distribution).
+- [ ] Choose how the dynamical system is solved (e.g., discrete-time recursion, ODE solvers, stochastic simulation).
 
-Although every emerging pathogen has a unique set of characteristics, there typically exist disease models that can serve as starting points in a crisis situation. The `macpan2` library of candidate models includes (TODO: or will include when the workshop is given) a variety of pathogens that cover the range of likely characteristics for emerging threats.
+<!-- omit from toc -->
+#### Library Models
+
+The [companion material](#materials) will describe each of the following starter models. Although every emerging pathogen has a unique set of characteristics, there typically exist disease models that can serve as starting points in a crisis situation. The `macpan2` [library of candidate models](https://canmod.github.io/macpan2/articles/example_models) includes (TODO: or will include when the workshop is given) a variety of pathogens that cover the range of likely characteristics for emerging threats.
 
 * Seasonal respiratory illnesses (e.g., influenza, COVID-19, RSV).
 * Measles and other childhood infections.
@@ -65,7 +73,10 @@ Although every emerging pathogen has a unique set of characteristics, there typi
 * Reemerging pathogens due to increased levels of antimicrobial resistance (e.g., drug resistant Group A Streptococcus, i.e. Scarlet fever).
 
 
-Participants will learn how to prepare the following types of data for comparisons with model simulations, or to quickly find and use instructions for preparing them.
+<!-- omit from toc -->
+#### Types of Data
+
+The [companion material](#materials) will describe how to prepare the following types of data for comparisons with model simulations.
 
 * Case, symptom, and outcome reports.
 * Hospital admissions and occupancy.
@@ -73,11 +84,13 @@ Participants will learn how to prepare the following types of data for compariso
 * Cell phone mobility data.
 * Genomic data on the relative abundance of pathogen strains.
 * Wastewater pathogen concentrations.
-* Social attitude data (e.g., vaccine hesitancy)
-* Operational and intervention schedules (e.g., vaccination supply, school closures)
+* Social attitude data (e.g., vaccine hesitancy).
+* Operational and intervention schedules (e.g., vaccination supply, school closures).
 
+<!-- omit from toc -->
+#### Model Modification Tools
 
-Participants will learn how to make the following modifications, or to quickly find and use instructions for making them.
+The [companion material](#materials) will describe how to make the following modifications, or to quickly find and use instructions for making them.
 
 * Add/remove compartments or flows amongst compartments (e.g., a compartment for pathogen concentration in wastewater).
 * Filter numbers of cases to account for reporting delays, under-reporting, and weekend effects.
