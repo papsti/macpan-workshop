@@ -65,7 +65,7 @@ There will not be enough time in the workshop to cover all of `macpan2`, so ther
 Participants will learn how to do the following types of tasks required for exploring model simulations.
 
 - [ ]  Find candidate simulation models in the `macpan2` [library](#library-models) of starter models.
-- [ ] Prepare certain [types of data](#types-of-data) so that they can be compared with `macpan2` simulation output, both visually and numerically.[^tidyverse]
+- [ ] Prepare certain [types of data](#types-of-data) so that they can be compared with `macpan2` simulation output, both visually and numerically.
 - [ ] Make [modifications to models](#model-modification-tools) in the library.
 - [ ] Compute [epidemiological summaries](#epidemiological-model-summaries) (e.g., basic reproduction number, $\mathcal{R}_0$).
 - [ ] Cast a model as a particular [dynamical model type](#dynamical-model-types) (e.g. discrete-time recursion, ordinary differential equation).
@@ -78,9 +78,9 @@ Participants will learn how to do the following types of tasks required for para
 
 - [ ] Modify the default values of parameters in a model.
 - [ ] Express uncertainty in model parameters (e.g., transmission rate) or in [epidemiological summaries](#epidemiological-model-summaries) (e.g., $\mathcal{R}_0$) with prior distributions.
-- [ ] Use [optimization](#optimization) to calibrate parameters so that the discrepancy between observed and simulated data is minimized.
+- [ ] Use [optimization](#optimization) to calibrate parameters (e.g., transmission rate) so that the discrepancy between observed and simulated data is minimized.
 - [ ] Parameterize the [initial values of the state variables](#calibrate-initial-state-variables) (e.g. `S`, `I`) so that they can be optimized.
-- [ ] Calibrating the functional form of time-variation of parameters using machine learning components embedded within epidemiological models. This is a useful technique when the reasons for parameter time-variation are not well-understood.
+- [ ] Calibrate the functional form of time-variation of parameters using machine learning components embedded within epidemiological models. This is a useful technique when the reasons for parameter time-variation are not well-understood.
 
 
 
@@ -89,11 +89,11 @@ Participants will learn how to do the following types of tasks required for para
 
 Participants will learn how to make the following types of inferences using realistically parameterized models.
 
-- [ ] Visualizing goodness-of-fit.
-- [ ] Generating confidence intervals for estimated parameters.
-- [ ] Forecasting model variables beyond the last data point.
-- [ ] Calculating prediction intervals measuring uncertainty about these forecasts.
-- [ ] Comparing alternative scenarios for counter-factual causal analysis (e.g., how many deaths were saved due to vaccination).
+- [ ] Visualize goodness-of-fit.
+- [ ] Generate confidence intervals for estimated parameters.
+- [ ] Forecast model variables beyond the last data point.
+- [ ] Calculate prediction intervals measuring uncertainty about these forecasts.
+- [ ] Compare alternative scenarios for counter-factual causal analysis (e.g., how many deaths were saved due to vaccination?).
 - [ ] Produce uncertainty estimates for [epidemiological model summaries](#epidemiological-model-summaries) like $\mathcal{R}_0$.
 
 
@@ -102,11 +102,11 @@ Participants will learn how to make the following types of inferences using real
 
 Participants will learn the following stratification strategies.
 
-- [ ] [Cartesian product models](#cartesian-product-models) that stratify every compartment in the same way (e.g. by age, location).
+- [ ] [Stratify every compartment](#cartesian-product-models) in the same way (e.g. by age, location).
 - [ ] [Stratify infectious compartments](#stratify-infectious-compartments) (e.g. by symptom status).
-- [ ] Expand a single compartment into a sequential chain, to simulate different distributions of time spent in that compartment.
-- [ ] Combine single-strain models into multi-strain models.
-- [ ] Stratify compartments based on immunity status. This is particularly useful in cases where immunity is partial, can wane, and is caused by a mixture of past infection, vaccination, and cross immunity due to associated diseases.
+- [ ] Expand a single compartment into a sequential chain, to model different distributions of time spent in that compartment.
+- [ ] Combine several single-strain models into a single multi-strain model.
+- [ ] Stratify compartments based on immunity status. This is particularly useful in cases where immunity is partial, can wane, and is caused by a mixture of past infection, vaccination, and cross-immunity.
 
 
 ## Materials
@@ -273,7 +273,5 @@ Participants **could** take the following steps to prepare for the workshop.
 ## Footnotes
 
 [^Rfamiliarity]: Although participants familiar with [R](https://www.r-project.org/) will be more comfortable with the material, familiarity will not be assumed.
-
-[^tidyverse]: We will use the `R` [tidyverse](https://www.tidyverse.org/) for data preparation and visualization.
 
 [^statisticalmodelling]: Deep technical knowledge is not required, but we will refer to concepts like prediction intervals, parameter estimates, likelihood functions, and prior distributions. Just having an educated guess about what these terms mean should be sufficient.
