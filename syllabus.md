@@ -1,7 +1,7 @@
 <!-- omit from toc -->
 # Using `macpan2`
 
-This is a (currently draft) syllabus for a workshop on using [`macpan2`](https://canmod.github.io/macpan2) for applied public health modelling.
+This is a (currently draft) syllabus for a workshop on using [`macpan2`](https://canmod.github.io/macpan2) for applied public health modelling. (Note: I highlight areas that cannot be finalized yet, with notes like this)
 
 <!-- omit from toc -->
 ## Table of Contents
@@ -50,7 +50,7 @@ The final stratification step will increase model complexity, which has both adv
 
 We stress the importance of data and other factual inputs, including expert opinions, into the modelling process. We are concerned with modelling specific real-world problems, and so none of the steps should be too abstract.
 
-We will use this model refinement cycle to provide context when concepts are introduced in the workshop. The instructor will take a modelling example through one cycle during the workshop (TODO: what should this example be?). Participants will be given time to try some of these techniques on [their own models that they have come prepared with](#suggested-preparation).
+We will use this model refinement cycle to provide context when concepts are introduced in the workshop. The instructor will take a modelling example through one cycle during the workshop (Note: The example that we will use needs to be discussed as the contract proceeds). Participants will be given time to try some of these techniques on [their own models that they have come prepared with](#suggested-preparation).
 
 ## Objectives
 
@@ -111,7 +111,7 @@ Participants will learn the following stratification strategies.
 
 ## Materials
 
-(Note:  This section will not be in the final syllabus, but I've put it here to give an idea of what the companion materials will contain once they are produced in a subsequent milestone.)
+(Note:  This section will not be in the final syllabus, but I've put it in the draft to give an idea of what the companion materials will contain once they are produced in a subsequent milestone.)
 
 <!-- omit from toc -->
 #### Library Models
@@ -225,6 +225,8 @@ After participating in the workshop, modellers will be able to do the following.
 
 ## Schedule
 
+(Note: This is just a suggested schedule for now.)
+
 | Time        | Activity                              |
 | ----------- | ------------------------------------- |
 | 8:00-9:00   | **Registration and Breakfast**        |
@@ -249,8 +251,10 @@ After participating in the workshop, modellers will be able to do the following.
 Participants **must** take the following steps to prepare for the workshop.
 
 * Successfully install `macpan2` using these [instructions](https://canmod.github.io/macpan2#installation).
-* TODO: Installation of supporting packages -- includes at least `dplyr`, `ggplot2`, `tidyr`, `broom.mixed` -- How exhaustive do we want to be here?
+* (Note: The final syllabus will include installation instructions for supporting packages as well -- includes at least `dplyr`, `ggplot2`, `tidyr`, `broom.mixed`).
 * Successfully run the `macpan2` [hello world](https://canmod.github.io/macpan2#hello-world) programme.
+
+If you have any issues with these steps, please contact the [instructor](#instructor) as soon as possible.
 
 <!-- omit from toc -->
 ### Suggested Preparation
