@@ -114,7 +114,7 @@ Participants will learn the following stratification strategies.
 (Note:  This section will not be in the final syllabus, but I've put it in the draft to give an idea of what the companion materials will contain once they are produced in a subsequent milestone.)
 
 <!-- omit from toc -->
-#### Library Models
+#### Library models
 
 The [companion material](#materials) will describe each of the following starter models. Although every emerging pathogen has a unique set of characteristics, there typically exist disease models that can serve as starting points in a crisis situation. The `macpan2` [library of candidate models](https://canmod.github.io/macpan2/articles/example_models) includes a variety of pathogens that cover the range of likely characteristics for emerging threats (Note: This will be finalized in a subsequent milestone, but suggestions as soon as possible would be great).
 
@@ -125,7 +125,7 @@ The [companion material](#materials) will describe each of the following starter
 * Vector-mediated pathogens like dengue, Zika, and bubonic plague.
 
 <!-- omit from toc -->
-#### Types of Data
+#### Types of data
 
 The [companion material](#materials) will describe how to prepare the following types of data for comparisons with model simulations, either for [exploration](#session-1-exploration) or [parameterization](#session-2-parameterization).
 
@@ -140,7 +140,7 @@ The [companion material](#materials) will describe how to prepare the following 
 * Operational and intervention schedules (e.g., vaccination supply, school closures).
 
 <!-- omit from toc -->
-#### Model Modification Tools
+#### Model modification tools
 
 The [companion material](#materials) will describe how to make the following modifications, or to quickly find and use instructions for making them.
 
@@ -152,7 +152,7 @@ The [companion material](#materials) will describe how to make the following mod
 * Add/remove/modify vital dynamics (i.e., birth and death).
 
 <!-- omit from toc -->
-#### Epidemiological Model Summaries
+#### Epidemiological model summaries
 
 The [companion material](#materials) will describe how to compute the following epidemiological model summaries.
 
@@ -162,7 +162,7 @@ The [companion material](#materials) will describe how to compute the following 
 * Moments of the generation interval distribution.
 
 <!-- omit from toc -->
-#### Dynamical Model Types
+#### Dynamical model types
 
 The [companion material](#materials) will describe how to cast an existing model as one of the following types of dynamical models.
 
@@ -184,11 +184,11 @@ The [companion material](#materials) will describe how to use the following tech
 * Transform parameters to be calibrated so that the optimizer doesn't converge on impossible values (e.g. calibrating the log of the transmission rate will ensure that the transmission rate is positive).
 
 <!-- omit from toc -->
-#### Calibrate Initial State Variables
+#### Calibrate initial state variables
 
 The [companion material](#materials) will describe how to calibrate the initial values of the state variables using the following approaches.
 
-* Simple expressions involving the total population size, `N` (e.g., initializing `S` as `N` minus the initial sum of the infectious and exposed classes).
+* Simple expressions involving the total population size, `N` (e.g., initializing `S` as `N` minus the initial  sum of the infectious and exposed classes).
 * Optimizing the initial values of selected state variables based on fit to the data (e.g., estimate numbers of individuals that were already recovered, `R`, by the time data collection started).
 * Estimating the distribution of exposed and infectious individuals among compartments in stratified models at the beginning of an epidemic. This is useful for addressing convergence issues caused by dynamical instability.
 
