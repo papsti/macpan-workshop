@@ -8,8 +8,8 @@ This is a (currently draft) syllabus for a workshop on using [`macpan2`](https:/
 - [Instructor](#instructor)
 - [Audience](#audience)
 - [Background](#background)
-- [Materials](#materials)
 - [Objectives](#objectives)
+- [Materials](#materials)
 - [Outcomes](#outcomes)
 - [Schedule](#schedule)
 - [Preparation](#preparation)
@@ -25,10 +25,12 @@ Steve Walker  –  swalk@mcmaster.ca  –  https://github.com/stevencarlislewalk
 
 We assume that workshop participants are professional epidemiological modellers who use, or want to use, compartmental models to address public health issues. The material is specifically tailored to such modellers at the [Public Health Agency of Canada](https://www.canada.ca/en/public-health.html).
 
-Without [preparation](#preparation), participants should be comfortable with the following.
+Participants should be comfortable with the following.
 * Basic terminology and ideas about [compartmental models in epidemiology](https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology).
-* Some experience coding to solve scientific problems.[^Rfamiliarity]
+* Basic coding to solve scientific problems.[^Rfamiliarity]
+* Familiarity with common terminology in statistical modelling.[^statisticalmodelling]
 
+Details on how to prepare for the workshop are covered [here](#preparation).
 
 ## Background
 
@@ -50,16 +52,15 @@ We stress the importance of data and other factual inputs, including expert opin
 
 We will use this model refinement cycle to provide context when concepts are introduced in the workshop. The instructor will take a modelling example through one cycle during the workshop (TODO: what should this example be?). Participants will be given time to try some of these techniques on [their own models that they have come prepared with](#suggested-preparation).
 
-## Materials
-
-There will not be enough time in the workshop to cover all of `macpan2`, so there will be a companion set of online materials [^milestones] that will cover all of the options available to modellers. In the workshop, we will follow one example through one full iteration of the [model refinement cycle](#background). Variations on each skill that is covered will be described in the companion material.
-
 ## Objectives
 
 The overall goal of the workshop is to train epidemiological modellers to use `macpan2` software in their efforts to use compartmental modelling to support public health. Each [session](#schedule) will cover techniques associated with one step in the [model refinement cycle](#background).
 
+There will not be enough time in the workshop to cover all of `macpan2`, so there will be a [companion set of online materials](#materials) that will cover all of the options available to modellers. In the workshop, we will follow one example through one full iteration of the [model refinement cycle](#background). Variations on each skill that is covered will be described in the [companion material](#materials). Where applicable, the lists of workshop objectives link to lists of these variations.
+
+
 <!-- omit from toc -->
-### Exploration
+#### Session 1: Exploration
 
 Participants will learn how to do the following types of tasks required for exploring model simulations.
 
@@ -69,10 +70,53 @@ Participants will learn how to do the following types of tasks required for expl
 - [ ] Compute [epidemiological summaries](#epidemiological-model-summaries) (e.g., $\mathcal{R}_0$).
 - [ ] Cast a model as a particular [dynamical model type](#dynamical-model-types) (e.g. discrete-time recursion, ordinary differential equation).
 
+
+<!-- omit from toc -->
+#### Session 2: Parameterization
+
+Participants will learn how to do the following types of tasks required for parameterizing models for making inferences about a particular population and epidemiological problem.
+
+- [ ] Modify the default values of parameters in a model.
+- [ ] Express uncertainty in model parameters (e.g., transmission rate) or in [epidemiological summaries](#epidemiological-model-summaries) (e.g., $\mathcal{R}_0$) with prior distributions.
+- [ ] Use [optimization](#optimization) to calibrate parameters so that the discrepancy between observed and simulated data is minimized.
+- [ ] Parameterize the [initial values of the state variables](#calibrate-initial-state-variables) (e.g. `S`, `I`) so that they can be optimized.
+- [ ] Calibrating the functional form of time-variation of parameters using machine learning components embedded within epidemiological models. This is a useful technique when the reasons for parameter time-variation are not well-understood.
+
+
+
+<!-- omit from toc -->
+#### Session 3: Inference
+
+Participants will learn how to make the following types of inferences using realistically parameterized models.
+
+- [ ] Visualizing goodness-of-fit.
+- [ ] Generating confidence intervals for estimated parameters.
+- [ ] Forecasting model variables beyond the last data point.
+- [ ] Calculating prediction intervals measuring uncertainty about these forecasts.
+- [ ] Comparing alternative scenarios for counter-factual causal analysis (e.g., how many deaths were saved due to vaccination).
+- [ ] Produce uncertainty estimates for [epidemiological model summaries](#epidemiological-model-summaries) like $\mathcal{R}_0$.
+
+
+<!-- omit from toc -->
+#### Session 4: Stratification
+
+Participants will learn the following stratification strategies.
+
+- [ ] [Cartesian product models](#cartesian-product-models) that stratify every compartment in the same way (e.g. by age, location).
+- [ ] [Stratify infectious compartments](#stratify-infectious-compartments) (e.g. by symptom status).
+- [ ] Expand a single compartment into a sequential chain, to simulate different distributions of time spent in that compartment.
+- [ ] Combine single-strain models into multi-strain models.
+- [ ] Stratify compartments based on immunity status. This is particularly useful in cases where immunity is partial, can wane, and is caused by a mixture of past infection, vaccination, and cross immunity due to associated diseases.
+
+
+## Materials
+
+(Note:  This section will not be in the final syllabus, but I've put it here to give an idea of what the companion materials will contain once they are produced in a subsequent milestone.)
+
 <!-- omit from toc -->
 #### Library Models
 
-The [companion material](#materials) will describe each of the following starter models. Although every emerging pathogen has a unique set of characteristics, there typically exist disease models that can serve as starting points in a crisis situation. The `macpan2` [library of candidate models](https://canmod.github.io/macpan2/articles/example_models) includes a variety of pathogens that cover the range of likely characteristics for emerging threats[^milestones].
+The [companion material](#materials) will describe each of the following starter models. Although every emerging pathogen has a unique set of characteristics, there typically exist disease models that can serve as starting points in a crisis situation. The `macpan2` [library of candidate models](https://canmod.github.io/macpan2/articles/example_models) includes a variety of pathogens that cover the range of likely characteristics for emerging threats (Note: This will be finalized in a subsequent milestone).
 
 * Seasonal respiratory illnesses like influenza, COVID-19, RSV.
 * Measles and other childhood infections.
@@ -125,16 +169,6 @@ The [companion material](#materials) will describe how to cast an existing model
 * Runge-Kutta 4 (a more accurate ODE solver).
 * Discrete-time recursion with process error (using the [Euler-multinomial distribution](https://kingaa.github.io/manuals/pomp/html/eulermultinom.html)).
 
-<!-- omit from toc -->
-### Parameterization
-
-Participants will learn how to do the following types of tasks required for parameterizing models for making inferences about a particular population and epidemiological problem.
-
-- [ ] Modify the default values of parameters in a model.
-- [ ] Express uncertainty in model parameters (e.g., transmission rate) or in [epidemiological summaries](#epidemiological-model-summaries) (e.g., $\mathcal{R}_0$) with prior distributions.
-- [ ] Use [optimization](#optimization) to calibrate parameters so that the discrepancy between observed and simulated data is minimized.
-- [ ] Parameterize the [initial values of the state variables](#calibrate-initial-state-variables) (e.g. `S`, `I`) so that they can be optimized.
-- [ ] Calibrating the functional form of time-variation of parameters using machine learning components embedded within epidemiological models. This is a useful technique when the reasons for parameter time-variation are not well-understood.
 
 <!-- omit from toc -->
 #### Optimization
@@ -157,31 +191,6 @@ The [companion material](#materials) will describe how to calibrate the initial 
 * Optimizing the initial values of selected state variables based on fit to the data (e.g., estimate numbers of individuals that were already recovered, `R`, by the time data collection started).
 * Estimating the distribution of exposed and infectious individuals among compartments in stratified models at the beginning of an epidemic. This is useful for addressing convergence issues caused by dynamical instability.
 
-
-
-<!-- omit from toc -->
-### Inference
-
-Participants will learn how to make the following types of inferences using realistically parameterized models.
-
-- [ ] Visualizing goodness-of-fit.
-- [ ] Generating confidence intervals for estimated parameters.
-- [ ] Forecasting model variables beyond the last data point.
-- [ ] Calculating prediction intervals measuring uncertainty about these forecasts.
-- [ ] Comparing alternative scenarios for counter-factual causal analysis (e.g., how many deaths were saved due to vaccination).
-- [ ] Produce uncertainty estimates for [epidemiological model summaries](#epidemiological-model-summaries) like $\mathcal{R}_0$.
-
-
-<!-- omit from toc -->
-### Stratification
-
-Participants will learn the following stratification strategies.
-
-- [ ] [Cartesian product models](#cartesian-product-models) that stratify every compartment in the same way (e.g. by age, location).
-- [ ] [Stratify infectious compartments](#stratify-infectious-compartments) (e.g. by symptom status).
-- [ ] Expand a single compartment into a sequential chain, to simulate different distributions of time spent in that compartment.
-- [ ] Combine single-strain models into multi-strain models.
-- [ ] Stratify compartments based on immunity status. This is particularly useful in cases where immunity is partial, can wane, and is caused by a mixture of past infection, vaccination, and cross immunity due to associated diseases.
 
 <!-- omit from toc -->
 #### Cartesian product models
@@ -220,7 +229,7 @@ After participating in the workshop, modellers will be able to do the following.
 | ----------- | ------------------------------------- |
 | 8:00-9:00   | **Registration and Breakfast**        |
 | 9:00-9:15   | **Welcome and Introduction**          |
-| 9:15-10:30  | **Session 1: Model Exploration**      |
+| 9:15-10:30  | **Session 1: Exploring Simulations**  |
 | 10:30-10:45 | **Break**                             |
 | 10:45-12:00 | **Session 2: Parameterization**       |
 | 12:00-1:00  | **Lunch**                             |
@@ -228,7 +237,7 @@ After participating in the workshop, modellers will be able to do the following.
 | 2:15-2:30   | **Break**                             |
 | 2:30-3:45   | **Session 4: Adding Model Structure** |
 | 3:45-4:00   | **Break**                             |
-| 4:00-5:15   | **Session 5: Make your own Model**    |
+| 4:00-5:15   | **Session 5: Open Discussion**        |
 | 5:15-5:30   | **Wrap-up and Closing Remarks**       |
 
 
@@ -265,6 +274,6 @@ Participants **could** take the following steps to prepare for the workshop.
 
 [^Rfamiliarity]: Although participants familiar with [R](https://www.r-project.org/) will be more comfortable with the material, familiarity will not be assumed.
 
-[^milestones]: To be produced in a subsequent milestone.
-
 [^tidyverse]: We will use the `R` [tidyverse](https://www.tidyverse.org/) for data preparation and visualization.
+
+[^statisticalmodelling]: Deep technical knowledge is not required, but we will refer to concepts like prediction intervals, parameter estimates, likelihood functions, and prior distributions. Just having an educated guess about what these terms mean should be sufficient.
