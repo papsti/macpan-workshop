@@ -38,9 +38,9 @@ Applied compartmental modelling is a big topic. The following model refinement c
 
 <img src="modelling-cycle.svg" alt="model refinement cycle diagram" style="width: 28em"/>
 
-We have learned from our experience in applied public health modelling that it is better to complete each loop as quickly as possible, rather than trying to produce the perfect model outright. Keeping the scope of each step as limited as possible, or even skipping steps if they are not a priority, is useful for avoiding [analysis paralysis](https://en.wikipedia.org/wiki/Analysis_paralysis). Every time we get back to the **inference** step we have another chance of providing valuable inputs to the public health debate, and so we want to do this as often as possible.
+We have learned from our experience in applied public health modelling that it is better to complete each iteration of this cycle as quickly as possible, rather than trying to produce the perfect model outright. Keeping the scope of each step as limited as possible, or even skipping steps if they are not a priority, is useful for avoiding [analysis paralysis](https://en.wikipedia.org/wiki/Analysis_paralysis). Every time we get back to the **inference** step we have another chance of providing valuable inputs to the public health debate, and so we want to do this as often as possible.
 
-Each step leads to the next in the following way.
+Each step leads to the next.
 * **Exploration** clarifies if our existing parameter values need refinement.
 * **Parameterization** refines a model so that it can be used to make defensible inferences in a specific context.
 * **Inference** can raise questions about whether a model should be stratified to make it more realistic.
@@ -67,7 +67,7 @@ Participants will learn how to do the following types of tasks required for expl
 - [ ]  Find candidate simulation models in the `macpan2` [library](#library-models) of starter models.
 - [ ] Prepare certain [types of data](#types-of-data) so that they can be compared with `macpan2` simulation output, both visually and numerically.[^tidyverse]
 - [ ] Make [modifications to models](#model-modification-tools) in the library.
-- [ ] Compute [epidemiological summaries](#epidemiological-model-summaries) (e.g., $\mathcal{R}_0$).
+- [ ] Compute [epidemiological summaries](#epidemiological-model-summaries) (e.g., basic reproduction number, $\mathcal{R}_0$).
 - [ ] Cast a model as a particular [dynamical model type](#dynamical-model-types) (e.g. discrete-time recursion, ordinary differential equation).
 
 
@@ -155,8 +155,8 @@ The [companion material](#materials) will describe how to make the following mod
 
 The [companion material](#materials) will describe how to compute the following epidemiological model summaries.
 
-* $\mathcal{R}_0$.
-* $\mathcal{R}_t$.
+* Basic reproduction number, $\mathcal{R}_0$.
+* Effective reproduction number, $\mathcal{R}_t$.
 * Intrinsic rate of increase, $r$.
 * Moments of the generation interval distribution.
 
