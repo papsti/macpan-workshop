@@ -74,7 +74,7 @@ Participants will learn how to do the following types of tasks required for expl
 <!-- omit from toc -->
 #### Session 2: Parameterization
 
-Participants will learn how to do the following types of tasks required for parameterizing models for making inferences about a particular population and epidemiological problem.
+Participants will learn how to do the following types of tasks required for parameterizing models for making inferences about a particular population and public health problem.
 
 - [ ] Modify the default values of parameters in a model.
 - [ ] Express uncertainty in model parameters (e.g., transmission rate) or in [epidemiological summaries](#epidemiological-model-summaries) (e.g., $\mathcal{R}_0$) with prior distributions.
@@ -116,7 +116,7 @@ Participants will learn the following stratification strategies.
 <!-- omit from toc -->
 #### Library Models
 
-The [companion material](#materials) will describe each of the following starter models. Although every emerging pathogen has a unique set of characteristics, there typically exist disease models that can serve as starting points in a crisis situation. The `macpan2` [library of candidate models](https://canmod.github.io/macpan2/articles/example_models) includes a variety of pathogens that cover the range of likely characteristics for emerging threats (Note: This will be finalized in a subsequent milestone).
+The [companion material](#materials) will describe each of the following starter models. Although every emerging pathogen has a unique set of characteristics, there typically exist disease models that can serve as starting points in a crisis situation. The `macpan2` [library of candidate models](https://canmod.github.io/macpan2/articles/example_models) includes a variety of pathogens that cover the range of likely characteristics for emerging threats (Note: This will be finalized in a subsequent milestone, but suggestions as soon as possible would be great).
 
 * Seasonal respiratory illnesses like influenza, COVID-19, RSV.
 * Measles and other childhood infections.
@@ -127,11 +127,12 @@ The [companion material](#materials) will describe each of the following starter
 <!-- omit from toc -->
 #### Types of Data
 
-The [companion material](#materials) will describe how to prepare the following types of data for comparisons with model simulations.
+The [companion material](#materials) will describe how to prepare the following types of data for comparisons with model simulations, either for [exploration](#session-1-exploration) or [parameterization](#session-2-parameterization).
 
 * Case, symptom, and outcome reports.
 * Hospital admissions and occupancy.
 * Seroprevalence.
+* Published contact matrices
 * Cell phone mobility data.
 * Genomic data on the relative abundance of pathogen strains.
 * Wastewater pathogen concentrations.
@@ -175,17 +176,17 @@ The [companion material](#materials) will describe how to cast an existing model
 
 The [companion material](#materials) will describe how to use the following techniques to calibrate observed data using trajectory matching.
 
-* Recovering parameter values by calibrating to data simulated from the model being calibrated. This is a useful sanity check.
+* Recover parameter values by calibrating to data simulated from the model being calibrated. This is a useful sanity check.
 * Relate simulations of specific model variables to observed versions of those variables.
 * Model over-dispersion using the negative-binomial distribution.
 * Manipulate optimizer settings when troubleshooting lack of convergence.
-* Determining whether the data provide information about a parameter of interest.
-* Transforming parameters to be calibrated so that the optimizer doesn't converge on impossible values (e.g. calibrating the log of the transmission rate will ensure that the transmission rate is positive).
+* Determine whether the data provide information about a parameter of interest.
+* Transform parameters to be calibrated so that the optimizer doesn't converge on impossible values (e.g. calibrating the log of the transmission rate will ensure that the transmission rate is positive).
 
 <!-- omit from toc -->
 #### Calibrate Initial State Variables
 
-The [companion material](#materials) will describe how to calibrate the initial values of the state variables using the following techniques.
+The [companion material](#materials) will describe how to calibrate the initial values of the state variables using the following approaches.
 
 * Simple expressions involving the total population size, `N` (e.g., initializing `S` as `N` minus the initial sum of the infectious and exposed classes).
 * Optimizing the initial values of selected state variables based on fit to the data (e.g., estimate numbers of individuals that were already recovered, `R`, by the time data collection started).
