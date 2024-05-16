@@ -279,4 +279,4 @@ Participants **could** take the following steps to prepare for the workshop.
 
 [^Rfamiliarity]: Although participants familiar with [R](https://www.r-project.org/) will be more comfortable with the material, familiarity will not be assumed.
 
-[^statisticalmodelling]: Deep technical knowledge is not required, but we will refer to concepts like prediction intervals, parameter estimates, likelihood functions, and prior distributions. Just having an educated guess about what these terms mean should be sufficient.
+[^statisticalmodelling]: Deep technical knowledge is not required. We will briefly review some statistical concepts, including prediction intervals, parameter estimates, likelihood functions, and prior distributions, so that everyone is on the same page.
