@@ -1,5 +1,5 @@
 <!-- omit from toc -->
-# Using `macpan2`
+# Syllabus
 
 This is a (currently draft) syllabus for a workshop on using [`macpan2`](https://canmod.github.io/macpan2) for applied public health modelling. (Note: I highlight areas that cannot be finalized yet, with notes like this)
 
@@ -18,8 +18,7 @@ This is a (currently draft) syllabus for a workshop on using [`macpan2`](https:/
 
 ## Instructor
 
-Steve Walker  –  swalk@mcmaster.ca  –  https://github.com/stevencarlislewalker
-
+Steve Walker  –  [swalk@mcmaster.ca](mailto:swalk@mcmaster.ca)  –  [github.com/stevencarlislewalker](https://github.com/stevencarlislewalker)
 
 ## Audience
 
@@ -34,21 +33,32 @@ Details on how to prepare for the workshop are covered [here](#preparation).
 
 ## Background
 
-Applied compartmental modelling is a big topic. The following model refinement cycle describes the aspects of this topic for which `macpan2` is designed.
+Applied compartmental modelling is a big topic. The following activities describe the aspects of this topic for which `macpan2` is designed.
 
-<img src="modelling-cycle.svg" alt="model refinement cycle diagram" style="width: 28em"/>
+  * **Exploration**: Compare simulations freely under alternative parameterizations, and with real and/or hypothetical data.
+* **Parameterization**: Refine default parameters for a specific population and question, possibly by formally calibrating parameters with data.
+* **Inference**: Use realistically parameterized models to make inferences (e.g. forecasts, counter-factuals).
+* **Stratification**: Separate individuals in one compartment into many (e.g. by age, space, vaccination status) and/or find stratified data.
 
-We have learned from our experience in applied public health modelling that it is better to complete each iteration of this cycle as quickly as possible, rather than trying to produce the perfect model outright. Keeping the scope of each step as limited as possible, or even skipping steps if they are not a priority, is useful for avoiding [analysis paralysis](https://en.wikipedia.org/wiki/Analysis_paralysis). Every time we get back to the **inference** step we have another chance of providing valuable inputs to the public health debate, and so we want to do this as often as possible.
+We stress the importance of data and other factual inputs, including expert opinions, into the modelling process. We are concerned with modelling specific real-world problems, and so none of these activities should be too abstract.
 
-Each step leads to the next.
-* **Exploration** clarifies if our existing parameter values need refinement.
-* **Parameterization** refines a model so that it can be used to make defensible inferences in a specific context.
-* **Inference** can raise questions about whether a model should be stratified to make it more realistic.
-* **Stratification** creates new model behaviours that may require further exploration.
+<!-- omit from toc -->
+#### Example Workflow
+
+Starting with exploration, and then iterating within the following model refinement cycle, is a good default workflow for applied public health compartmental modelling projects.
+
+```mermaid
+graph LR;
+    Exploration-->Parameterization;
+    Parameterization-->Inference;
+    Inference-->Stratification;
+    Stratification-->Exploration;
+```
+In this cycle, exploration often clarifies if our existing parameter values need refinement. In turn, parameterization refines a model so that it can be used to make defensible inferences in a specific context. Such inferences can raise questions about whether a model should be stratified to make it more realistic. Finally, stratification can create new model behaviours that may require further exploration, starting the cycle over again.
+
+We have learned from our experience in applied public health modelling that it is better to complete each iteration of this cycle as quickly as possible, rather than trying to produce the perfect model outright. Keeping the scope of each step as limited as possible, or even skipping steps if they are not a priority, is useful for avoiding [analysis paralysis](https://en.wikipedia.org/wiki/Analysis_paralysis). Every time we get back to the **inference** step we have another chance of providing valuable inputs to a public health debate, and so we want to do this as often as possible.
 
 The final stratification step will increase model complexity, which has both advantages and disadvantages. Therefore, complexity will tend to increase as a modelling project iterates through the cycle. Starting with a simple model will help ensure that the project converges on an appropriate level of complexity. Sometimes it is worth resetting the cycle by starting again with a simpler model.
-
-We stress the importance of data and other factual inputs, including expert opinions, into the modelling process. We are concerned with modelling specific real-world problems, and so none of the steps should be too abstract.
 
 We will use this model refinement cycle to provide context when concepts are introduced in the workshop. The instructor will take a modelling example through one cycle during the workshop (Note: The example that we will use needs to be discussed as the contract proceeds). Participants will be given time to try some of these techniques on [their own models that they have come prepared with](#suggested-preparation).
 
@@ -116,13 +126,12 @@ Participants will learn the following stratification strategies.
 <!-- omit from toc -->
 #### Library models
 
-The [companion material](#materials) will describe each of the following starter models. Although every emerging pathogen has a unique set of characteristics, there typically exist disease models that can serve as starting points in a crisis situation. The `macpan2` [library of candidate models](https://canmod.github.io/macpan2/articles/example_models) includes a variety of pathogens that cover the range of likely characteristics for emerging threats (Note: This will be finalized in a subsequent milestone, but suggestions as soon as possible would be great).
+The [companion material](#materials) will describe each of the following starter models. Although every emerging pathogen has a unique set of characteristics, there typically exist disease models that can serve as starting points in a crisis situation. The `macpan2` [library of candidate models](https://canmod.github.io/macpan2/articles/example_models) includes a variety of pathogens that cover the range of likely characteristics for emerging threats (Note: Currently this is a placeholder list, which will be finalized using PHAC input in a subsequent milestone. Still, suggestions as soon as possible would be great).
 
-* Seasonal respiratory illnesses like influenza, COVID-19, RSV.
-* Measles and other childhood infections.
-* Ebola and pneumonic plague.
-* Sexually transmitted diseases like HIV and MPox.
-* Vector-mediated pathogens like dengue, Zika, and bubonic plague.
+* Seasonal respiratory illnesses (e.g., influenza, COVID-19, RSV).
+* Childhood infections (e.g., measles).
+* Sexually transmitted diseases (e.g., HIV and MPox).
+* Vector-mediated pathogens (e.g., dengue, Zika, and bubonic plague).
 
 <!-- omit from toc -->
 #### Types of data
@@ -158,7 +167,7 @@ The [companion material](#materials) will describe how to compute the following 
 
 * Basic reproduction number, $\mathcal{R}_0$.
 * Effective reproduction number, $\mathcal{R}_t$.
-* Intrinsic rate of increase, $r$.
+* Intrinsic per-capita rate of increase, $r$.
 * Moments of the generation interval distribution.
 
 <!-- omit from toc -->
@@ -266,14 +275,14 @@ Participants **should** take the following steps to prepare for the workshop.
 * Be prepared to load in some data that are relevant for this model.
 * Try using the [companion material](#materials) to take their model through the [model refinement cycle](#background).
 * Take a look at the [tidyverse](https://www.tidyverse.org), which is a data analysis framework and set of packages in `R` with which `macpan2` is designed to work.
+* Install [RStudio](https://www.rstudio.com/categories/rstudio-ide/) if they have not already done so, as I will be using RStudio during the workshop. But facility with another program for creating R scripts is fine.
 
 <!-- omit from toc -->
 ### Optional Preparation
 
 Participants **could** take the following steps to prepare for the workshop.
 
-* Install [RStudio](https://www.rstudio.com/categories/rstudio-ide/) if they have not already done so, as I will be using RStudio during the workshop. But facility with another program for creating R scripts is fine.
-
+* (Note: This will need to be done later.)
 
 ## Footnotes
 
