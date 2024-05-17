@@ -1,4 +1,6 @@
-# macpan-workshop
+# macpan workshop
+
+A [workshop](canmod.github.io/macpan-workshop/) on macpan2 for applied public health modelling. 
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
