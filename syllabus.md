@@ -237,20 +237,20 @@ After participating in the workshop, modellers will be able to do the following.
 
 (Note: This is just a suggested schedule for now.)
 
-| Time        | Activity                              |
-| ----------- | ------------------------------------- |
-| 8:00-9:00   | **Registration and Breakfast**        |
-| 9:00-9:15   | **Welcome and Introduction**          |
-| 9:15-10:30  | **Session 1: Exploring Simulations**  |
-| 10:30-10:45 | **Break**                             |
-| 10:45-12:00 | **Session 2: Parameterization**       |
-| 12:00-1:00  | **Lunch**                             |
-| 1:00-2:15   | **Session 3: Making Inferences**      |
-| 2:15-2:30   | **Break**                             |
-| 2:30-3:45   | **Session 4: Adding Model Structure** |
-| 3:45-4:00   | **Break**                             |
-| 4:00-5:15   | **Session 5: Open Discussion**        |
-| 5:15-5:30   | **Wrap-up and Closing Remarks**       |
+| Time        | Activity                        |
+| ----------- | ------------------------------- |
+| 8:00-9:00   | **Registration and Breakfast**  |
+| 9:00-9:15   | **Welcome and Introduction**    |
+| 9:15-10:30  | **Session 1: Exploration**      |
+| 10:30-10:45 | **Break**                       |
+| 10:45-12:00 | **Session 2: Parameterization** |
+| 12:00-1:00  | **Lunch**                       |
+| 1:00-2:15   | **Session 3: Inference**        |
+| 2:15-2:30   | **Break**                       |
+| 2:30-3:45   | **Session 4: Stratification**   |
+| 3:45-4:00   | **Break**                       |
+| 4:00-5:15   | **Session 5: Open Discussion**  |
+| 5:15-5:30   | **Wrap-up and Closing Remarks** |
 
 
 ## Preparation
