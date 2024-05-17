@@ -12,4 +12,4 @@ A [workshop](https://canmod.github.io/macpan-workshop/) on macpan2 for applied p
 * [(Draft) Syllabus](syllabus.md)
 * [(Draft) Model library](https://github.com/canmod/macpan2/tree/main/inst/starter_models)
 * TODO: Companion materials
-* [Documentation](https://canmod.github.io/macpan2)
+* [Documentation for `macpan2`](https://canmod.github.io/macpan2)
