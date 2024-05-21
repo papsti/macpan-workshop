@@ -45,7 +45,7 @@ Applied compartmental modelling is a big topic. The following activities describ
   * **Exploration**: Compare simulations freely under alternative parameterizations, and with real and/or hypothetical data.
 * **Parameterization**: Refine default parameters for a specific population and question, possibly by formally calibrating parameters with data.
 * **Inference**: Use realistically parameterized models to make inferences (e.g. forecasts, counter-factuals). 
-<span style="color:blue">MLi: Is this inference? Your examples fits under scenarios rather than inference.</span>.  
+<span style="color:red">MLi: Is this inference? Your examples fits under scenarios rather than inference.</span>.  
 * **Stratification**: Separate individuals in one compartment into many (e.g. by age, space, vaccination status) and/or find stratified data.
 
 We stress the importance of data and other factual inputs, including expert opinions, into the modelling process. We are concerned with modelling specific real-world problems, and so none of these activities should be too abstract.
