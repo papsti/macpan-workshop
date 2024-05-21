@@ -39,13 +39,13 @@ Details on how to prepare for the workshop are covered [here](#preparation).
 
 ## Background
 
-<font style="color:red"> MLi: What is `macpan2`? </font>.
+<p style="color:red"> MLi: What is `macpan2`? </p>.
 Applied compartmental modelling is a big topic. The following activities describe the aspects of this topic for which `macpan2` is designed.
 
   * **Exploration**: Compare simulations freely under alternative parameterizations, and with real and/or hypothetical data.
 * **Parameterization**: Refine default parameters for a specific population and question, possibly by formally calibrating parameters with data.
 * **Inference**: Use realistically parameterized models to make inferences (e.g. forecasts, counter-factuals). 
-<font style="color:red">MLi: Is this inference? Your examples fits under scenarios rather than inference.</font>.  
+<p style="color:red">MLi: Is this inference? Your examples fits under scenarios rather than inference.</p>.  
 * **Stratification**: Separate individuals in one compartment into many (e.g. by age, space, vaccination status) and/or find stratified data.
 
 We stress the importance of data and other factual inputs, including expert opinions, into the modelling process. We are concerned with modelling specific real-world problems, and so none of these activities should be too abstract.
@@ -64,7 +64,7 @@ graph LR;
 ```
 In this cycle, exploration often clarifies if our existing parameter values need refinement. In turn, parameterization refines a model so that it can be used to make defensible inferences in a specific context. Such inferences can raise questions about whether a model should be stratified to make it more realistic. Finally, stratification can create new model behaviours that may require further exploration, starting the cycle over again.
 
-We have learned from our experience in applied public health modelling that it is better to complete each iteration of this cycle as quickly as possible, rather than trying to produce the perfect model outright. <font style="color:red">MLi: reword the previous s.? I know what you mean but from an inference point of view, one can build a model they think is perfect for their research question and then try to learn what is going on</font>. Keeping the scope of each step as limited as possible, or even skipping steps if they are not a priority, is useful for avoiding [analysis paralysis](https://en.wikipedia.org/wiki/Analysis_paralysis). Every time we get back to the **inference** step we have another chance of providing valuable inputs to a public health debate, and so we want to do this as often as possible.
+We have learned from our experience in applied public health modelling that it is better to complete each iteration of this cycle as quickly as possible, rather than trying to produce the perfect model outright. <p style="color:red">MLi: reword the previous s.? I know what you mean but from an inference point of view, one can build a model they think is perfect for their research question and then try to learn what is going on </p>. Keeping the scope of each step as limited as possible, or even skipping steps if they are not a priority, is useful for avoiding [analysis paralysis](https://en.wikipedia.org/wiki/Analysis_paralysis). Every time we get back to the **inference** step we have another chance of providing valuable inputs to a public health debate, and so we want to do this as often as possible.
 
 The final stratification step will increase model complexity, which has both advantages and disadvantages. Therefore, complexity will tend to increase as a modelling project iterates through the cycle. Starting with a simple model will help ensure that the project converges on an appropriate level of complexity. Sometimes it is worth resetting the cycle by starting again with a simpler model.
 
@@ -98,7 +98,7 @@ Participants will learn how to do the following types of tasks required for para
 * Express uncertainty in model parameters (e.g., transmission rate) or in [epidemiological summaries](#epidemiological-model-summaries) (e.g., $\mathcal{R}_0$) with prior distributions.
 * Use [optimization](#optimization) to calibrate parameters (e.g., transmission rate) so that the discrepancy between observed and simulated data is minimized.
 * Parameterize the [initial values of the state variables](#calibrate-initial-state-variables) (e.g. `S`, `I`) so that they can be optimized.
-* Calibrate the functional form of time-variation of parameters using machine learning components embedded within epidemiological models. This is a useful technique when the reasons for parameter time-variation are not well-understood.
+* Calibrate the functional form of time-variation of parameters using machine learning components <p style="color:red">MLi:what does ML components mean? </p> embedded within epidemiological models. This is a useful technique when the reasons for parameter time-variation are not well-understood.
 
 
 
@@ -107,7 +107,7 @@ Participants will learn how to do the following types of tasks required for para
 
 Participants will learn how to make the following types of inferences using realistically parameterized models.
 
-* Visualize goodness-of-fit.
+* Visualize goodness-of-fit. <p style="color:red"> MLi: This sounds like diagnostics</p>
 * Generate confidence intervals for estimated parameters.
 * Forecast model variables beyond the last data point.
 * Calculate prediction intervals measuring uncertainty about these forecasts.
@@ -242,6 +242,9 @@ After participating in the workshop, modellers will be able to do the following.
 
 
 ## Schedule
+
+
+<p style="color:red"> MLi: This schedule will need to change. Let's try to break it up into a few days. </p>
 
 (Note: This is just a suggested schedule for now.)
 
