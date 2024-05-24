@@ -7,7 +7,9 @@
 [cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
 [cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
 
-This is a (currently draft) syllabus for a workshop on using [`macpan2`](https://canmod.github.io/macpan2) for applied public health modelling. (Note: I highlight areas that cannot be finalized yet, with notes like this)
+This is a (currently draft) syllabus for a workshop on using [`macpan2`](https://canmod.github.io/macpan2) for applied public health modelling.
+
+(Note: I highlight areas that cannot be finalized yet, with notes like this)
 
 <!-- omit from toc -->
 ## Table of Contents
@@ -243,7 +245,7 @@ After participating in the workshop, modellers will be able to do the following.
 
 ## Schedule
 
-(Note: This is just a suggested schedule for now. We will likely break this up into several days.)
+(Note: This is just a suggested schedule for now. We will likely break this up into several days. We will also explicitly target two types of users in the schedule: (1) those who want to translate a model diagram into simulations and (2) those who want to dig into the details of optimization, ODE solvers, etc.)
 
 | Time        | Activity                        |
 | ----------- | ------------------------------- |
