@@ -1,2 +1,3 @@
 *.drawio.bkp
 local-archive/*
+.DS_Store

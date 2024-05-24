@@ -1,0 +1,1 @@
+The files in this folder are created by saving webpages as PDF files, using Firefox's print-to-PDF functionality.
