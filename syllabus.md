@@ -292,12 +292,7 @@ Participants **should** take the following steps to prepare for the workshop.
 
 Participants **could** take the following steps to prepare for the workshop.
 
-* (Note: This will need to be done later.)
-
-| <img src="images/exercise.svg" width="110" />                                                                                                                           |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Write out by hand the last four lines of an expanded SEIR model.<br>[Grab](https://canmod.github.io/macpan2/articles/example_models#using-examples) the SEIR model from the model library and test if you were correct.|
-                                                                                                                                                                                         
+* (Note: This will need to be done later.)                                         
 
 ## Footnotes
 
