@@ -294,6 +294,13 @@ Participants **could** take the following steps to prepare for the workshop.
 
 * (Note: This will need to be done later.)
 
+| <img src="images/exercise.svg" width="110" />                                                                                                                           |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Write out by hand the last four lines of an expanded SEIR model.<tr></tr>                                                                                    |
+| [Grab](https://canmod.github.io/macpan2/articles/example_models#using-examples) the SEIR model from the model library and test if you were correct.<tr></tr> |
+
+| <img src="images/tip.svg" width="110" />                                                                                                                                                                                            
+
 ## Footnotes
 
 [^Rfamiliarity]: Although participants familiar with [R](https://www.r-project.org/) will be more comfortable with the material, familiarity will not be assumed.
