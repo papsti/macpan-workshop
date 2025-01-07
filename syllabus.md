@@ -45,7 +45,7 @@ The [`macpan2`](https://canmod.github.io/macpan2) package is a flexible compartm
 
 Applied compartmental modelling is a big topic. The following activities describe the aspects of this topic for which `macpan2` is designed.
 
-  * **Exploration**: Compare simulations freely under alternative parameterizations, and with real and/or hypothetical data.
+* **Exploration**: Compare simulations freely under alternative parameterizations, and with real and/or hypothetical data.
 * **Parameterization**: Refine default parameters for a specific population and question, possibly by formally calibrating parameters with data.
 * **Inference**: Use realistically parameterized models to make inferences (e.g. confidence intervals for parameters, forecasts, counter-factuals). 
 * **Stratification**: Separate individuals in one compartment into many (e.g. by age, space, vaccination status) and/or find stratified data.
