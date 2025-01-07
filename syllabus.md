@@ -294,6 +294,10 @@ Participants **could** take the following steps to prepare for the workshop.
 
 * (Note: This will need to be done later.)
 
+> [!TIP]
+>
+> Testing github markdown on github pages.
+
 ## Footnotes
 
 [^Rfamiliarity]: Although participants familiar with [R](https://www.r-project.org/) will be more comfortable with the material, familiarity will not be assumed.
