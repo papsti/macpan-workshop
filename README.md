@@ -9,4 +9,4 @@ A [workshop](https://canmod.github.io/macpan-workshop/) on [macpan2](https://can
 
 * [(Draft) Syllabus](syllabus.md)
 * [(Draft) Model library](https://github.com/canmod/macpan2/tree/main/inst/starter_models)
-* TODO: Companion materials
+* [(Draft) Companion materials](companion-materials.md)
