@@ -809,12 +809,6 @@ admissions are compared with *flows into* a hospital compartment and
 that occupancy is compared with a *state variable* of a hospital
 compartment.
 
-``` r
-tip(
-    "The [shiver](https://github.com/canmod/macpan2/tree/main/inst/starter_models/shiver) model gives an example that utilizes hospital data."
-)
-```
-
 | <img src="images/tip.svg" width="120" />                                                                                                 |
 |:-----------------------------------------------------------------------------------------------------------------------------------------|
 | The [shiver](https://github.com/canmod/macpan2/tree/main/inst/starter_models/shiver) model gives an example that utilizes hospital data. |
@@ -932,12 +926,6 @@ constant, with no birth or death.
 In many cases large jurisdictions can be considered closed and
 deterministic systems without altering conclusions. Small populations
 however are more strongly impacted by stochasticity.
-
-``` r
-tip(
-    "The [awareness](https://github.com/canmod/macpan2/tree/main/inst/starter_models/awareness) model in the library illustrates how `macpan2` can be used in these cases."
-)
-```
 
 | <img src="images/tip.svg" width="120" />                                                                                                                              |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
