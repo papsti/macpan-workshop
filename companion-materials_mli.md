@@ -314,6 +314,9 @@ There are three parts to this specification.
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | The `sir` model illustrates the two kinds of expressions that can be used to define model behaviour: (1) Generic math expressions (e.g., `S ~ N - I - R`) and (2) flows among compartments (e.g., `mp_per_capita_flows(from ...)`). In generic math expressions, the tilde, `~`, is used to denote assignment. For example, the expression, `S ~ N - I - R`, says that the result of `N - I - R` is assigned to the quantity, `S`. Any function listed [here](https://canmod.github.io/macpan2/reference/engine_functions) can be used on the right-hand-side of these expressions. Each flow expression corresponds to a single flow between compartments. The tilde-based math expressions and flow expressions can be mixed to provide a great deal of flexibility in model specifications. Throughout I will discuss the relative advantages and disadvantages of using one or the other. |
 
+MLi: I personally don't like this order. I would probably start with showing how to implement an SIR and then be like oh yeah, we have a bunch of templates where we already coded some of the commonly used models. It would be great to show the manual implementation matching up with the boilerplate. 
+
+
 ### Simulating Dynamics
 
 The main thing that you will do with model specifications like `sir` is
@@ -333,6 +336,8 @@ from it, so you develop this skill immediately.
 | <img src="images/concept.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Simple, Consistent, and General Format for Simulation Output**<br>Simulations of `macpan2` models are always returned in the same format – there are no options. This inflexibility is deliberate. The simulation data format is simple and easily adapted to whatever data organizational preferences you might have. This choice also benefits us because it means we do not need to worry about reinventing data preparation tools (many of which already exist) and focus on epidemiological modelling functionality (of which fewer options exist). [This](https://canmod.github.io/macpan2/articles/quickstart#generating-simulations) article gives a brief but full description of the data format. |
+
+MLi: Page not found. Unless quickstart shows how to manually make an SIR, I am not comfortable with the current flow. I don't like the idea of right off the bat you use the template. Don't get me wrong, for an user that is probably the case, but for teaching, I would like a manual implementation first.  
 
 ### Relating Model Specifications to Box Diagrams
 
@@ -432,6 +437,9 @@ $$
 \end{align}
 $$
 
+
+MLi: Expand text why one would want to use ODE. For example, people are used to it... bla bla bla
+
 We can easily use the `sir` compartmental model object to simulate it as
 an ODE using the `mp_rk4()` function, which uses the [Runge Kutta 4 ODE
 solver](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods).
@@ -478,6 +486,8 @@ Here is one more example of an SIR model expansion that uses the
 distribution](https://kingaa.github.io/manuals/pomp/html/eulermultinom.html)
 to simulate a compartmental model with process error.
 
+MLi: Write a bit more text. Why do people want it and why is it good to include it. I know we are not teaching why people epi/modelling, but I feel like a few extra lines talking through some points can help instead the current version just saying "use this".  
+
 ``` r
 sir |> mp_euler_multinomial() |> mp_expand() |> mp_print_during()
 ```
@@ -509,6 +519,8 @@ the absolute flow rates per time step.
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Embrace Difference Equations**<br>The original [McMasterPandemic](https://github.com/mac-theobio/McMasterPandemic) project was based entirely on discrete time models. Simulations from discrete time difference equations requires little math to implement and understand. This simplicity is nice in applied work where the barriers to real-world impact do not usually include mathematical novelty and elegance. Further, when modelling a real system it is natural to compare simulations with observed data, which are measured at discrete times anyways.<br><br>Difference equations are not without their drawbacks however. Many results in mathematical epidemiology come from ODEs and various stochastic processes, and so when using difference equations epidemiologists might be concerned that their intuition from ODEs will not hold. Difference equations can also be less stable (e.g., state variables going below zero) than ODEs, which can become a real problem when calibrating models using trajectory matching. Therefore we make it easy to check these concerns by using a [state update method](https://canmod.github.io/macpan2/reference/state_updates) like `mp_rk4()` (for a simple ODE solver) or `mp_euler_multinomial()` (for a simple process error model) to overcome these concerns whenever necessary.<br><br>When using these alternative state update methods keep in mind that they too can be thought of as difference equation model. Carefully inspect the last three lines of any of the expanded `sir` models, which constitute the same set of difference equations no matter what state update method is used. This similarity indicates that all state update methods boil down to discrete-time difference equations, but with different approaches to calculating the absolute flow rates (e.g., `infection` and `recovery`). These absolute rate variables describe the changes in the state variables (e.g., `S`, `I`, `R`) due to different processes over a single time-step, allowing for continuous change within a time-step. This means, for example, that the time-series of the `infection` variable will contain the incidence over each time-step. So, for example, if each time-step represents one week, the `infection` variable will contain weekly incidence values.<br><br>In summary, the choice of state update method will often not matter in applied work, but when it does the [state update methods](https://canmod.github.io/macpan2/reference/state_updates) make it simple to explore options. |
 
+MLi: I would go back and see if we can make a shorter version. We can keep this as it is, but I feel like there is an imbalance of efforts (which is not your fault), so the way to resolve this imbalance is to cut (pieces that are way too detailed) and not add (make other sectioned even bigger). 
+
 | <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                                                                                   |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Write out by hand the last four lines of an expanded SEIR model.<br><br>[Read](https://canmod.github.io/macpan2/articles/example_models#using-examples) the [SEIR model](https://github.com/canmod/macpan2/tree/main/inst/starter_models/seir) from the model library and test if you were correct. |
@@ -523,6 +535,8 @@ start, so let’s get started doing this.
 | <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Follow the advice [here](https://canmod.github.io/macpan2/articles/example_models.html#modifying-examples) to create two copies of the [SIR](https://github.com/canmod/macpan2/tree/main/inst/starter_models/sir) model: one called SI and one called SEIR. Place both of these models in a directory on your computer called `macpan-workshop-library`. Or just do one model as time permits.<br><br>Simplify the model called SI so that it is an SI model (check your work [here](https://github.com/canmod/macpan2/tree/main/inst/starter_models/si)).<br><br>Add flows to the model called SEIR so that it becomes an SEIR model (check your work [here](https://github.com/canmod/macpan2/tree/main/inst/starter_models/seir)).<br><br>Simulate a time-series of incidence from one of these models and plot it. |
+
+MLi: Highlight this is basically what "off-the-shelf" model means. 
 
 The previous exercise described one approach to modifying existing
 models, which involves copying a directory and editing the files in that
@@ -605,6 +619,8 @@ reports = (covid_on
 Just to start, let’s focus on a single wave so I do not need to worry
 about time-varying parameters and/or the causes of waves.
 
+MLi: Is this hinting you will continue this exact same example later? If not, change the text accordingly please.
+
 ``` r
 early_reports = filter(reports, date < as.Date("2020-07-01"))
 (early_reports
@@ -622,6 +638,8 @@ just reasonable. The goal is to make an initial plot containing both
 simulations and observed data. This will form the foundation for
 modifying the model to make it capture important features of the
 underlying processes.
+
+MLi: What does reasonable mean here? Expand the chain of thought. 
 
 ``` r
 sir_covid = mp_tmb_insert(sir
@@ -723,6 +741,8 @@ which illustrates a reasonably good fit before the peak of the wave and
 quite poor fit after it. Still, the next two concepts argue that this is
 quite a bit of progress and sets us up nicely for next steps.
 
+MLi: Define "reasonably good fit". What makes you say that? (I am not saying you are wrong, I want you to say a bit more).
+
 | <img src="images/concept.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                 |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Goodness of Fit Can Come Later**<br>Being able to generate simulations that are comparable to observed data is an important step in-and-of-itself in applied public health modelling, even if the comparison shows that the model is inconsistent with the data. Just having this comparison pipeline sets us up to assess whether subsequent model modifications help explain the system. |
@@ -745,6 +765,9 @@ convolution to transform the simulated incidence values into a time
 series of reported cases that is expected by the model. Keep reading to
 find out specifically how this is done.
 
+
+MLi: Explain what convolutions are vs a shift in data or whatever people do to handle reporting delays.
+
 ![](figures/convolution-series-1.png)<!-- -->
 
 Now we can now compare the observed and expected reported cases in a
@@ -759,6 +782,8 @@ variation of this distribution can be fitted parameters. During the
 COVID-19 pandemic the McMaster group found that a Gamma distribution
 with mean delay of 11 days and coefficient of variation of 0.25 was a
 reasonable model.
+
+MLi: Gamma is ok, for an example, do we want to use Normal instead? If you use Gamma, do you want to explain it a little? (i.e. non-negative and etc). 
 
 The following figure illustrates how a single expected case report is
 computed, in this case at time 26. The Gamma distribution of delay times
@@ -875,13 +900,18 @@ with different compartments or adding a variable to the model that
 produces a transformation of the variables tracking immune states that
 is comparable with the raw seroprevalence data.
 
+MLi: Is shiver doing R/N or (N-S)/N for seroprevalence? 
+
+
 | <img src="images/concept.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Multiple Trajectories**<br>Models that can simulate multiple empirically observable variables have a better chance of being reliable. For example, a model that only generates case reports will be less able to learn from data as one that can generate seroprevalence as well. In particular, seroprevalence will give better estimates of recovery parameters (for obvious reasons) but also might do so for transmission parameters as well because of better estimates of the size of the susceptible pool. |
 
 ### Vaccination
 
-If you happen to now the vaccination schedule (e.g., number of doses
+MLi: Can you do a better transition instead of jumping right in? A short paragraph saying, oh, you want to do vaccination, you will need x,y,z).
+
+If you happen to know the vaccination schedule (e.g., number of doses
 administered per time-step for each time-step in the simulation), one
 simple way to model vaccination is to create a [time-varying
 parameter](https://canmod.github.io/macpan2/articles/time_varying_parameters)
@@ -1043,6 +1073,8 @@ approximations to the posterior is a special case of the [delta
 method](https://en.wikipedia.org/wiki/Delta_method) that is implemented
 in [TMB](https://github.com/kaskr/adcomp), which is described
 [here](https://kaskr.github.io/adcomp/_book/Appendix.html#theory-underlying-sdreport).
+
+MLi: Will need some tips when you hit optimization problem and NaNs. What do you do? Can we make a simple MRE?
 
 | <img src="images/tip.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
