@@ -85,9 +85,10 @@ install.packages('macpan2', repos = repos)
 
 ## Verify that Everything Worked
 
-A good test of the above instructions is to copy and paste the following
-lines of code, and make sure that you get the same graph printed out
-below.
+First make sure that the packages can be loaded without error. Please
+issue the following command into R and verify that you get a similar
+report about loaded packages (it does not need to be identical, just
+free of errors).
 
 ``` r
 library(macpan2); library(tidyverse)
@@ -104,6 +105,10 @@ library(macpan2); library(tidyverse)
     ## ✖ dplyr::filter()    masks stats::filter()
     ## ✖ dplyr::lag()       masks stats::lag()
     ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+To really make sure that things worked, please copy and paste the
+following lines of code that simulate from an SIR model into R, and make
+sure that you get the same graph printed out below.
 
 ``` r
 ("starter_models"
