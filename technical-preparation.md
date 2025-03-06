@@ -3,10 +3,6 @@ Workshop on `macpan2` – Technical Preparation
 
 <!-- omit from toc -->
 
-# Technical Preparation for Workshop on `macpan2`
-
-<!-- omit from toc -->
-
 ## Table of Contents
 
 -   [The Most Important Things](#the-most-important-things)
