@@ -90,23 +90,20 @@ lines of code, and make sure that you get the same graph printed out
 below.
 
 ``` r
-library(macpan2); library(ggplot2); library(dplyr)
+library(macpan2); library(tidyverse)
 ```
 
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following object is masked from 'package:macpan2':
-    ## 
-    ##     all_equal
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
+    ## ── Attaching core tidyverse packages ─────────────────────── tidyverse 2.0.0 ──
+    ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+    ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+    ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+    ## ✔ purrr     1.0.2     
+    ## ── Conflicts ───────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::all_equal() masks macpan2::all_equal()
+    ## ✖ dplyr::filter()    masks stats::filter()
+    ## ✖ dplyr::lag()       masks stats::lag()
+    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 
 ``` r
 ("starter_models"
@@ -120,4 +117,4 @@ library(macpan2); library(ggplot2); library(dplyr)
 )
 ```
 
-![](technical-preparation_files/figure-gfm/sir-1.png)<!-- -->
+![](figures/sir-1.png)<!-- -->
