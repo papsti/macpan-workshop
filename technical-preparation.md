@@ -1,6 +1,9 @@
 Technical Preparation
 ================
 
+This document outlines the steps required to prepare your computer for
+the [`macpan2`](https://canmod.github.io/macpan2/) workshop.
+
 <!-- omit from toc -->
 
 ## Table of Contents
@@ -12,9 +15,6 @@ Technical Preparation
     Packages](#installing-supporting-r-packages)
 -   [Installing `macpan2`](#installing-macpan2)
 -   [Verify that Everything Worked](#verify-that-everything-worked)
-
-This document outlines the steps required to prepare your computer for
-the [`macpan2`](https://canmod.github.io/macpan2/) workshop.
 
 ## The Most Important Things
 
@@ -45,10 +45,10 @@ print(R.version.string)
 
     ## [1] "R version 4.4.2 (2024-10-31)"
 
-This shows that I am using version R version 4.4.2 (2024-10-31). The
-version you get will likely be different. You need R version `4.1.0` or
-newer. If your version is too old, please install the latest version of
-R by following the instructions [here](https://cran.rstudio.com/).
+This shows that I am using R version 4.4.2 (2024-10-31). The version you
+get will likely be different. You need R version `4.1.0` or newer. If
+your version is too old, please install the latest version of R by
+following the instructions [here](https://cran.rstudio.com/).
 
 If you do not have R installed, I recommend following the installation
 instructions for [RStudio](https://posit.co/download/rstudio-desktop/).
