@@ -1,4 +1,4 @@
-Workshop on `macpan2` – Technical Preparation
+Technical Preparation
 ================
 
 <!-- omit from toc -->
