@@ -56,7 +56,7 @@ These instructions guide you through installing
 [R](https://cran.rstudio.com/) first, followed by RStudio, which is the
 program I will use to interact with R during the workshop.
 
-You are welcome to use R without RStudio, but unless you have a strong
+You are welcome to use R without RStudio but, unless you have a strong
 preference, I recommend using RStudio.
 
 ## Installing Supporting R Packages
