@@ -46,7 +46,7 @@ print(R.version.string)
     ## [1] "R version 4.4.2 (2024-10-31)"
 
 This shows that I am using R version 4.4.2 (2024-10-31). The version you
-get will likely be different. You need R version `4.1.0` or newer. If
+get will likely be different. You need R version `4.3.0` or newer. If
 your version is too old, please install the latest version of R by
 following the instructions [here](https://cran.rstudio.com/).
 
@@ -92,13 +92,15 @@ free of errors.
 library(macpan2); library(tidyverse)
 ```
 
-    ## ── Attaching core tidyverse packages ─────────────────────── tidyverse 2.0.0 ──
+    ## Warning: package 'macpan2' was built under R version 4.4.3
+
+    ## ── Attaching core tidyverse packages ──────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
     ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
     ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
     ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
     ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
     ## ✔ purrr     1.0.2     
-    ## ── Conflicts ───────────────────────────────────────── tidyverse_conflicts() ──
+    ## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::all_equal() masks macpan2::all_equal()
     ## ✖ dplyr::filter()    masks stats::filter()
     ## ✖ dplyr::lag()       masks stats::lag()
