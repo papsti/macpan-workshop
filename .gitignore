@@ -1,3 +1,4 @@
 *.drawio.bkp
 local-archive/*
 .DS_Store
+.Rproj.user
