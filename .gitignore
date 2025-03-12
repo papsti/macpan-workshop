@@ -4,3 +4,4 @@ local-archive/*
 .Rproj.user
 macpan-workshop.Rproj
 .macpan/*
+.Rhistory
