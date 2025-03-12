@@ -7,7 +7,7 @@ repos = c('https://canmod.r-universe.dev', 'https://cloud.r-project.org')
 install.packages('macpan2', repos = repos)
 ```
 
-yeilds the following on the Science Network RStudio server
+yields the following on the Science Network RStudio server
 
 ```
 The following required system packages are not installed:
@@ -57,5 +57,7 @@ ERROR: configuration failed for package 'curl'
 * removing '/home/CSCScience.ca/ipapst/git-repos/macpan-workshop/renv/staging/1/curl'
 install of package 'curl' failed [error code 1]
 ```
+
+Requested update of image running RStudio on the IDE server. Now that that's been done, trying installs again (this time via `renv::restore()` since in the meantime I completed the installs on corp and tracked it with `renv`). It worked!
 
 
