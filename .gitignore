@@ -2,3 +2,5 @@
 local-archive/*
 .DS_Store
 .Rproj.user
+macpan-workshop.Rproj
+.macpan/*
