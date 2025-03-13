@@ -5,6 +5,16 @@ This document describes videos about
 [`macpan2`](https://canmod.github.io/macpan2/) that could be useful for
 workshop participants.
 
+-   [Videos to Watch Before the Workshop (with
+    exercises)](#videos-to-watch-before-the-workshop-with-exercises)
+    -   [Required to Watch Before the
+        Workshop](#required-to-watch-before-the-workshop)
+    -   [Potentially Useful to Watch Before the
+        Workshop](#potentially-useful-to-watch-before-the-workshop)
+    -   [Useful Workshop Preparation Exercises (not
+        required)](#useful-workshop-preparation-exercises-not-required)
+-   [Additional Videos](#additional-videos)
+
 ## Videos to Watch Before the Workshop (with exercises)
 
 I’ve described some videos and related pre-workshop resources below. If
@@ -62,13 +72,13 @@ is not required.
 
 <img src="diagrams/measles-mike.svg" width="700" />
 
-| <img src="images/exercise.svg" width="120" />                              |
-|:---------------------------------------------------------------------------|
-| Create a model specification of a model that you use or are interested in. |
+| <img src="images/exercise.svg" width="120" />      |
+|:---------------------------------------------------|
+| Specify a model that you use or are interested in. |
 
 | <img src="images/exercise.svg" width="120" />                                                                                                                                       |
 |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Simulate one or more of the state variables in one of the above models. A big challenge here will be in choosing default numerical values of the parameters and initial conditions. |
+| Simulate one or more of the state variables in one of the above models. A challenge here will be to choose good default numerical values for the parameters and initial conditions. |
 
 | <img src="images/tip.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
