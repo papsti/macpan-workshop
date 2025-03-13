@@ -5,7 +5,16 @@ This document describes videos about
 [`macpan2`](https://canmod.github.io/macpan2/) that could be useful for
 workshop participants.
 
-## Videos to Watch Before the Workshop
+## Videos to Watch Before the Workshop (with exercises)
+
+I’ve described some videos and related pre-workshop resources below. If
+you have any questions about these or anything else before the workshop,
+please leave a comment
+[here](https://github.com/canmod/macpan-workshop/issues/7). Note that
+commenting will require that you have a GitHub account, so either feel
+free to get one or just [email me](mailto:swalk@mcmaster.ca) directly.
+
+### Required to Watch Before the Workshop
 
 Please watch the following videos to prepare for the workshop (links are
 to Google Drive).
@@ -21,6 +30,8 @@ to Google Drive).
 |:-------------------------------------------------------------------------------------------------------------------------|
 | Code that is discussed in the videos is [here](https://github.com/canmod/macpan-workshop/blob/main/code/intro-videos.R). |
 
+### Potentially Useful to Watch Before the Workshop
+
 If you are not familiar with R or the
 [tidyverse](https://www.tidyverse.org/) suite of packages, please
 consider watching the following videos from [this video
@@ -35,9 +46,11 @@ series](https://www.youtube.com/playlist?list=PL9qLtkRkGWLeh9UNptt_734t0u1zXz5wy
 4.  [Introduction to the Pipe
     Operator](https://www.youtube.com/watch?v=Stt3qEuIeso&list=PL9qLtkRkGWLeh9UNptt_734t0u1zXz5wy&index=6&pp=iAQB)
 
-These videos give you the background to do the following exercises. It
-would be great if you did some of these before the workshop, but it is
-not required.
+### Useful Workshop Preparation Exercises (not required)
+
+The above videos give you the background to do the following exercises.
+It would be great if you did some of these before the workshop, but it
+is not required.
 
 | <img src="images/exercise.svg" width="120" />                                                                                       |
 |:------------------------------------------------------------------------------------------------------------------------------------|
