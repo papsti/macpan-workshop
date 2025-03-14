@@ -144,10 +144,9 @@ After participating in the workshop, modellers will be able to do the following.
 | 1:45-2:00   | **Break**                       |
 | 2:00-2:45   | **Session 3: Inference**        |
 | 2:45-3:00   | **Break**                       |
-| 3:00-3:15   | **Session 4: Stratification**   |
-| 3:15-3:55   | **General Discussion**          |
-| 3:55-4:00   | **Closing Remarks**             |
-
+| 3:00-3:30   | **Session 4: Stratification**   |
+| 3:30-3:45   | **Feedback**                    |
+| 3:45-4:00   | **Finishing and Packing Up**    |
 
 
 ## Preparation
