@@ -1,4 +1,6 @@
 library(macpan2)
+# get funs
+invisible(lapply(list.files(here::here("ip-notes", "R"), full.names = TRUE), source))
 
 # using equations as defined here: https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SEIR_model
 
@@ -84,29 +86,17 @@ sim <- mp_trajectory(seir_simulator) |>
 
 # variable labeller
 matrix_labeller <-  c(
-    "S" = "Susceptible",
-    "E" = "Exposed",
-    "I" = "Infectious",
-    "R" = "Recovered"
-  )
+  "S" = "Susceptible",
+  "E" = "Exposed",
+  "I" = "Infectious",
+  "R" = "Recovered"
+)
 
-ggplot2::ggplot(
-  data = sim,
-  mapping = ggplot2::aes(x = time, y = value, colour = matrix)
-) +
-  ggplot2::geom_line() +
-  ggplot2::facet_wrap(
-    ~ matrix, 
-    labeller = ggplot2::labeller(matrix = matrix_labeller),
-    scales = "free_y") + 
-  ggplot2::labs(
-    title = "Simulation of the SEIR model with balanced births and natural deaths",
-    subtitle = "For this set of parameters, we observe convergence to the endemic equilibrium",
-    x = "Days from beginning of outbreak",
-    y = "Number of individuals"
-  ) + 
-  ggplot2::guides(
-    colour = "none"
-  )
+plot_sim(
+  sim, 
+  matrix_labeller, 
+  title = "Simulation of the SEIR model with balanced births and natural deaths",
+         
+  subtitle = "For this set of parameters, we observe convergence to the endemic equilibrium")
 
 # convergence to endemic equilibrium!
