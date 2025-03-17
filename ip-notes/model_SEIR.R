@@ -4,8 +4,10 @@ library(macpan2)
 
 # define the model
 seir <- mp_tmb_model_spec(
+  before = list(
+    N ~ S + E + I + R # calculate population size before the simulation loop begins to avoid having to specify a value for it by hand in the defaults list
+  ),
   during = list(
-    N ~ S + E + I + R, # check population size remains constant
     # births
     mp_per_capita_inflow(
       from = "N", to = "S",
@@ -60,8 +62,7 @@ seir <- mp_tmb_model_spec(
     S = 9999,
     E = 0, 
     I = 1,
-    R = 0,
-    N = 1e5
+    R = 0
   )
 )
 
