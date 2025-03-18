@@ -34,6 +34,8 @@ Details on how to prepare for the workshop are covered [here](#preparation).
 
 ## Schedule
 
+The workshop will take place on March 20, 2025 with the following schedule.
+
 | Time        | Activity                      |
 | ----------- | ----------------------------- |
 | 10:00-10:15 | **Welcome and Introduction**  |
