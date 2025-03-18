@@ -13,12 +13,11 @@ This is a syllabus for a workshop on using [`macpan2`](https://canmod.github.io/
 ## Table of Contents
 - [Instructor](#instructor)
 - [Audience](#audience)
+- [Schedule](#schedule)
 - [Background](#background)
 - [Objectives](#objectives)
 - [Outcomes](#outcomes)
-- [Schedule](#schedule)
 - [Preparation](#preparation)
-- [Footnotes](#footnotes)
 
 
 ## Instructor
@@ -33,15 +32,32 @@ During the workshop, we will alternate between conceptual discussions and hands-
 
 Details on how to prepare for the workshop are covered [here](#preparation).
 
+## Schedule
+
+| Time        | Activity                      |
+| ----------- | ----------------------------- |
+| 10:00-10:15 | **Welcome and Introduction**  |
+| 10:15-11:00 | **Session 1a: Exploration**   |
+| 11:00-11:15 | **Break**                     |
+| 11:15-12:00 | **Session 1b: Exploration**   |
+| 12:00-1:00  | **Lunch**                     |
+| 1:00-1:45   | **Session 2: Calibration**    |
+| 1:45-2:00   | **Break**                     |
+| 2:00-2:45   | **Session 3: Inference**      |
+| 2:45-3:00   | **Break**                     |
+| 3:00-3:30   | **Session 4: Stratification** |
+| 3:30-3:45   | **Feedback**                  |
+| 3:45-4:00   | **Finishing and Packing Up**  |
+
 ## Background
 
 The [`macpan2`](https://canmod.github.io/macpan2) package is a flexible compartmental modelling tool that has been optimized for fast calibration to data.  This package grew out of lessons learned developing the [McMasterPandemic](https://github.com/mac-theobio/McMasterPandemic) COVID-19 model, which was used to support public health during the pandemic.
 
 Applied compartmental modelling is a big topic. The following activities describe the aspects of this topic for which `macpan2` is designed.
 
-* **Exploration**: Compare simulations freely under alternative parameterizations, and with real and/or hypothetical data.
-* **Parameterization**: Refine default parameters for a specific population and question, possibly by formally calibrating parameters with data.
-* **Inference**: Use realistically parameterized models to make inferences (e.g. confidence intervals for parameters, forecasts, counter-factuals). 
+* **Exploration**: Compare simulations freely under alternative parameter sets, and with real and/or hypothetical data.
+* **Calibration**: Refine default parameters for a specific population and question, possibly by formally calibrating parameters with data.
+* **Inference**: Use calibrated models to make inferences (e.g. confidence intervals for parameters, forecasts, counter-factuals). 
 * **Stratification**: Separate individuals in one compartment into many (e.g. by age, space, vaccination status) and/or find stratified data.
 
 <!-- omit from toc -->
@@ -51,24 +67,24 @@ Starting with exploration, and then iterating within the following model refinem
 
 ```mermaid
 graph LR;
-    Exploration-->Parameterization;
-    Parameterization-->Inference;
+    Exploration-->Calibration;
+    Calibration-->Inference;
     Inference-->Stratification;
     Stratification-->Exploration;
 ```
-In this cycle, exploration often clarifies if our existing parameter values need refinement. In turn, parameterization refines a model so that it can be used to make defensible inferences in a specific context. Such inferences can raise questions about whether a model should be stratified to make it more realistic. Finally, stratification can create new model behaviours that may require further exploration, starting the cycle over again.
+In this cycle, exploration can clarify if existing parameter values need refinement. In turn, calibration refines a model so that it can be used to make defensible inferences in a specific context. Inferences can raise questions about whether a model should be stratified to make it more realistic. Finally, stratification can create new model behaviours that may require further exploration, starting the cycle over again.
 
-In applied public health modeling, iterative cycles can be completed at different paces, depending on the context and objectives. A rapid approach, focusing on completing each iteration efficiently rather than aiming for a fully refined model upfront, can sometimes help maintain momentum. Limiting the scope of each step, or occasionally omitting less critical steps, may help mitigate delays associated with extensive analysis. Returning to the **inference** step frequently provides opportunities to refine insights and contribute to ongoing public health discussions.
+In applied public health modeling, iterative cycles can be completed at different paces, depending on the context and objectives. A rapid approach, focusing on completing each iteration efficiently rather than aiming for a fully refined model upfront, can sometimes help maintain momentum. Limiting the scope of each step, or occasionally omitting less critical steps, may help mitigate delays associated with extensive analysis. Returning to the inference step frequently provides opportunities to refine insights and contribute to ongoing public health discussions.
 
-The final stratification step will increase model complexity, which has both advantages and disadvantages. Therefore, complexity will tend to increase as a modelling project iterates through the cycle. Starting with a simple model will help ensure that the project converges on an appropriate level of complexity. Sometimes it is worth resetting the cycle by starting again with a simpler model.
+The stratification step will increase model complexity, which has both advantages and disadvantages. Therefore, complexity will tend to increase as a modelling project iterates through the cycle. Starting with a simple model will help ensure that the project converges on an appropriate level of complexity. Sometimes it is worth resetting the cycle by starting again with a simpler model.
 
-We will use this model refinement cycle to provide context when concepts are introduced in the workshop. The instructor will take a modelling example through one cycle during the workshop (Note: The example that we will use needs to be discussed as the contract proceeds). Participants will be given time to try some of these techniques on their own models.
+We will use this model refinement cycle to provide context when concepts are introduced in the workshop. The instructor will take a modelling example through one cycle during the workshop. Participants will be given time to try some of these techniques on their own models.
 
 ## Objectives
 
 The overall goal of the workshop is to introduce epidemiological modellers to the `macpan2` software for compartmental modelling to support public health. Each [session](#schedule) will cover techniques associated with one of the steps in the [model refinement cycle](#background).
 
-There will not be enough time in the workshop to cover all of `macpan2`, so there will be a [companion set of online materials](https://canmod.github.io/macpan-workshop/companion-materials) that will cover more of the options available to modellers.
+There will not be enough time in the workshop to cover all of `macpan2`, so there will be a companion set of online materials that will cover more of the available options.
 
 
 <!-- omit from toc -->
@@ -79,7 +95,7 @@ Participants will learn about the following types of tasks required for explorin
 * Find simulation models in the `macpan2` [library](#library-models) of starter models.
 * Create simulation models from scratch.
 * Run, summarize, and visualize simulations.
-* Identify sets of model quantities to be parameterized.
+* Identify sets of model quantities to be calibrated.
 * Describe the relationships between the values of parameter inputs and simulated outputs.
 * Prepare certain [types of data](#types-of-data) so that they can be compared with `macpan2` simulation output, both visually and numerically.
 * Make [modifications to models](#model-modification-tools) in the library.
@@ -88,20 +104,20 @@ Participants will learn about the following types of tasks required for explorin
 
 
 <!-- omit from toc -->
-#### Session 2: Parameterization (Calibration)
+#### Session 2: Calibration
 
 Participants will learn about the following types of tasks required for parameterizing models, for exploring scenarios and making inferences and predictions about a particular population and public health problem.
 
 * Use [optimization](#optimization) to calibrate parameters (e.g., transmission rate) so that the discrepancy between observed and simulated data is minimized.
 * Apply basic troubleshooting techniques when optimization fails.
 * Express uncertainty in model parameters (e.g., transmission rate) with prior distributions.
-* Calibrate the functional form of time-variation of parameters using machine learning sub-models embedded within epidemiological models. This is a useful technique when the reasons for parameter time-variation are not well-understood.
+* Calibrate the functional form of time-variation of parameters.
 
 
 <!-- omit from toc -->
 #### Session 3: Inference
 
-Participants will learn about the following types of tasks that are often necessary when making inferences using realistically parameterized models.
+Participants will learn about the following types of tasks that are often necessary when making inferences using calibrated models.
 
 * Visualize goodness-of-fit.
 * Generate confidence intervals for estimated parameters.
@@ -127,35 +143,10 @@ After participating in the workshop, modellers will be able to do the following.
 
 * Determine if compartmental modelling is an appropriate tool for a particular applied public health problem.
 * Use `macpan2` to create a simple compartmental model for a real public health problem.
-* Navigate the [documentation](https://canmod.github.io/macpan2) and the [workshop companion material](https://canmod.github.io/macpan-workshop/companion-materials) to learn how to solve compartmental modelling problems that `macpan2` is able to solve.
+* Navigate the [documentation](https://canmod.github.io/macpan2) to learn how to solve compartmental modelling problems that `macpan2` is able to solve.
 * Suggest improvements to `macpan2`.
-
-
-## Schedule
-
-| Time        | Activity                        |
-| ----------- | ------------------------------- |
-| 10:00-10:15 | **Welcome and Introduction**    |
-| 10:15-11:00 | **Session 1a: Exploration**     |
-| 11:00-11:15 | **Break**                       |
-| 11:15-12:00 | **Session 1b: Exploration**     |
-| 12:00-1:00  | **Lunch**                       |
-| 1:00-1:45   | **Session 2: Parameterization** |
-| 1:45-2:00   | **Break**                       |
-| 2:00-2:45   | **Session 3: Inference**        |
-| 2:45-3:00   | **Break**                       |
-| 3:00-3:30   | **Session 4: Stratification**   |
-| 3:30-3:45   | **Feedback**                    |
-| 3:45-4:00   | **Finishing and Packing Up**    |
-
 
 ## Preparation
 
 * Follow the [technical preparation](https://canmod.github.io/macpan-workshop/technical-preparation) document to ensure that your computer is ready for the workshop.
 * Read the [video resources](https://canmod.github.io/macpan-workshop/video-resources) document and prioritize watching the first three videos giving background on the macpan2 software.
-
-## Footnotes
-
-[^Rfamiliarity]: Although participants familiar with [R](https://www.r-project.org/) will be more comfortable with the material, familiarity will not be assumed.
-
-[^statisticalmodelling]: Deep technical knowledge is not required. We will briefly review some statistical concepts, including prediction intervals, parameter estimates, likelihood functions, and prior distributions, so that everyone is on the same page.
