@@ -13,6 +13,7 @@ This is a syllabus for a workshop on using [`macpan2`](https://canmod.github.io/
 ## Table of Contents
 - [Instructor](#instructor)
 - [Audience](#audience)
+- [Flow](#flow)
 - [Schedule](#schedule)
 - [Background](#background)
 - [Objectives](#objectives)
@@ -30,9 +31,11 @@ I'm not an epidemiological modeller. I've been working on computational statisti
 
 We assume that workshop participants are epidemiological/disease modellers who use, or want to use, compartmental models to address public health issues. The material is specifically tailored to such modellers at the [Public Health Agency of Canada](https://www.canada.ca/en/public-health.html).
 
-During the workshop, we will alternate between conceptual discussions and hands-on exercises to explore key techniques. We recognize that participants will have different levels of experience, so some exercises may feel more challenging than others. However, conceptual discussions will not depend on completing prior exercises. Some participants may focus on translating compartmental model diagrams into simulations, while others may want to delve into the details of optimization and ODE solvers. Hands-on sessions will be flexible, allowing participants to pursue their interests, while conceptual discussions will be structured and scheduled.
-
 Details on how to prepare for the workshop are covered [here](#preparation).
+
+## Flow
+
+During the workshop, we will alternate between conceptual discussions and hands-on exercises to explore key techniques. We recognize that participants will have different levels of experience, so some exercises may feel more challenging than others. However, conceptual discussions will not depend on completing prior exercises. Some participants may focus on translating compartmental model diagrams into simulations, while others may want to delve into the details of optimization and ODE solvers. Hands-on sessions will be flexible, allowing participants to pursue their interests, while conceptual discussions will be structured and scheduled.
 
 ## Schedule
 
