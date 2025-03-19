@@ -24,6 +24,8 @@ This is a syllabus for a workshop on using [`macpan2`](https://canmod.github.io/
 
 Steve Walker  –  [swalk@mcmaster.ca](mailto:swalk@mcmaster.ca)  –  [github.com/stevencarlislewalker](https://github.com/stevencarlislewalker)
 
+I'm not an epidemiological modeller. I've been working on computational statistics for about 20 years. I got my PhD in Ecology in 2010, and I've worked in academic, industry, and government settings.
+
 ## Audience
 
 We assume that workshop participants are epidemiological/disease modellers who use, or want to use, compartmental models to address public health issues. The material is specifically tailored to such modellers at the [Public Health Agency of Canada](https://www.canada.ca/en/public-health.html).
