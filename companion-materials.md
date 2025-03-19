@@ -3,7 +3,7 @@ Workshop on `macpan2` – Companion Materials
 
 Author: [Steve Walker](https://github.com/stevencarlislewalker)
 
-Last Updated: 2025-01-10
+Last Updated: 2025-03-19
 
 [![CC BY-NC-SA
 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
@@ -24,7 +24,7 @@ this)
     -   [Philosophy](#philosophy)
     -   [Organization](#organization)
     -   [Code Style](#code-style)
-    -   [Dependencies](#dependencies)
+    -   [Technical Setup](#technical-setup)
 -   [Exploration](#exploration)
     -   [Starter Model Library](#starter-model-library)
     -   [Simulating Dynamics](#simulating-dynamics)
@@ -46,7 +46,7 @@ this)
         Concentrations](#wastewater-pathogen-concentrations)
     -   [Vital Dynamics](#vital-dynamics)
     -   [Importation and Stochasticity](#importation-and-stochasticity)
--   [Parameterization](#parameterization)
+-   [Calibration](#calibration)
     -   [Modify Default Values](#modify-default-values)
     -   [Express Uncertainty in Model
         Parameters](#express-uncertainty-in-model-parameters)
@@ -76,56 +76,29 @@ participating in this workshop. The instructor will review this syllabus
 with participants before the sessions start.
 
 The syllabus provides a roadmap for the workshop, guiding participants
-through the exploration-parameterization-inference-stratification
-strategy essential for compartmental modeling using the `macpan2`
-package. Each session is organized around these steps, offering a
-structured approach to model refinement. Participants will follow a
-practical example that demonstrates each phase of the strategy, with
-companion materials available for deeper exploration of related skills.
-Each session contains exercises designed to reinforce key concepts and
-encourage participants to apply lessons to their own compartmental model
-diagrams. For those without a pre-existing model or whose models are not
-applicable, a detailed example model is provided to ensure a hands-on
-learning experience. By the end of the workshop, participants will have
-the skills to evaluate the suitability of compartmental modeling for
-public health problems, develop models using macpan2, navigate its
-documentation to address challenges, and provide constructive feedback
-for improving the tool.
+through the exploration-calibration-inference-stratification strategy
+that can be used for compartmental modeling. By the end of the workshop,
+participants will have the skills to develop compartmental models using
+macpan2, navigate its documentation to address challenges, and provide
+constructive feedback for improving the tool.
 
 ### Philosophy
 
-The goal of `macpan2` is *not* to implement cutting edge modelling and
-statistical techniques. Instead the goal is to implement well-understood
-techniques, optimized for use by epidemiologists who are tasked with
-answering real-world public health questions using data-calibrated
-compartmental models.
+The goal of `macpan2` is to implement well-understood techniques, for
+use by epidemiologists who are tasked with using data-calibrated
+compartmental models to answer public health questions.
 
 ### Organization
 
-Our effort to present standard tools in a convenient manner has led us
-to develop concepts that encapsulate how I believe modellers do (or
-should) think. By building and updating our software with these concepts
-in mind, I seek to converge on a tool that will help modellers focus
-more on epidemiology and less on computational details. We highlight
-these concepts in special boxes.
-
-| <img src="images/concept.svg" width="120" />                                                                                                                                        |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **User Feedback**<br>Our modelling concepts are hypotheses that I would like feedback on. What concepts seem helpful/useful and what concepts seem harmful/useless? |
-
-Ideally these concepts would lead to a perfectly intuitive tool. In
-reality I recognize that there are important technical details that you
-will need to learn to use the tool effectively. We try to collect the
-more technical ideas in tip boxes.
+We collect some of the more technical ideas in tip boxes.
 
 | <img src="images/tip.svg" width="120" />                                                                                             |
 |:-------------------------------------------------------------------------------------------------------------------------------------|
 | Tip boxes like this contain technical information that could interrupt the flow of ideas, but is too important to bury in footnotes. |
 
-If you’re attending this workshop, you’re already a highly skilled
+If you’re attending this workshop, you’re already an experienced
 modeller. Many of the concepts will be familiar to you, so you may gain
-more by actively engaging with the tool itself. To support this process
-of self-discovery, I have designed a series of exercises.
+more by doing illustrative exercises.
 
 | <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                                                                                 |
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -140,73 +113,27 @@ We will often use the [base R pipe
 operator](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/#pipes),
 `|>`, when it improves readability.
 
-### Dependencies
+### Technical Setup
 
-The `macpan2` package is designed to be used with two other standard
-packages, and so all of the code in these materials assumes that the
-following packages are loaded.
-
-``` r
-library(macpan2) ## obviously
-library(ggplot2)
-library(dplyr)
-library(lubridate)
-```
-
-This document was produced with the following R environment.
-
-``` r
-sessionInfo() |> print()
-```
-
-    ## R version 4.4.2 (2024-10-31)
-    ## Platform: x86_64-apple-darwin20
-    ## Running under: macOS Sequoia 15.0.1
-    ## 
-    ## Matrix products: default
-    ## BLAS:   /Library/Frameworks/R.framework/Versions/4.4-x86_64/Resources/lib/libRblas.0.dylib 
-    ## LAPACK: /Library/Frameworks/R.framework/Versions/4.4-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
-    ## 
-    ## locale:
-    ## [1] en_CA.UTF-8/en_CA.UTF-8/en_CA.UTF-8/C/en_CA.UTF-8/en_CA.UTF-8
-    ## 
-    ## time zone: America/New_York
-    ## tzcode source: internal
-    ## 
-    ## attached base packages:
-    ## [1] stats     graphics  grDevices utils     datasets  methods   base     
-    ## 
-    ## other attached packages:
-    ## [1] lubridate_1.9.3 dplyr_1.1.4     ggplot2_3.5.1   macpan2_1.13.0 
-    ## 
-    ## loaded via a namespace (and not attached):
-    ##  [1] vctrs_0.6.5       cli_3.6.3         knitr_1.49        rlang_1.1.4      
-    ##  [5] xfun_0.49         generics_0.1.3    jsonlite_1.8.9    glue_1.8.0       
-    ##  [9] colorspace_2.1-1  TMB_1.9.15        htmltools_0.5.8.1 fansi_1.0.6      
-    ## [13] scales_1.3.0      rmarkdown_2.29    grid_4.4.2        tibble_3.2.1     
-    ## [17] evaluate_1.0.1    munsell_0.5.1     MASS_7.3-61       fastmap_1.2.0    
-    ## [21] yaml_2.3.10       lifecycle_1.0.4   memoise_2.0.1     compiler_4.4.2   
-    ## [25] timechange_0.3.0  pkgconfig_2.0.3   lattice_0.22-6    digest_0.6.37    
-    ## [29] R6_2.5.1          tidyselect_1.2.1  utf8_1.2.4        oor_0.0.2        
-    ## [33] pillar_1.9.0      magrittr_2.0.3    Matrix_1.7-1      withr_3.0.2      
-    ## [37] tools_4.4.2       gtable_0.3.6      cachem_1.1.0
+Instructions for setting your computer for using `macpan2` are
+[here](https://canmod.github.io/macpan-workshop/technical-preparation).
 
 ## Exploration
 
-Participants will learn how to explore and modify models, and informally
-compare them with observed data.
+Participants will learn how to explore and modify model specification
+objects, and informally compare them with observed data.
 
-At the core of macpan2 are model specifications, which primarily define
-the flows between compartments and set default values for parameters.
-These specifications offer a clear and systematic way to describe the
-behavior of a system, starting with the foundational elements of
-compartmental models. While additional complexities, such as vital
-dynamics, external sources and sinks, or initialization of state
-variables, are often necessary, I begin with simple specifications.
+At the core of macpan2 are model specifications, which define
+compartment flows and set default parameter values. These specifications
+provide a systematic framework for describing system behavior, starting
+with the foundational elements of compartmental models. While additional
+complexities like vital dynamics, external sources, sinks, or state
+variable initialization are often required, I begin with simple
+specifications.
 
-| <img src="images/concept.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Parsimony**<br>Starting with simplicity reflects an essential modelling principle: begin with a straightforward model and gradually add complexity as the situation demands, whether for specific data, additional details, or particular public health objectives. This approach will help you quickly get started with macpan2 and transition smoothly to more intricate applications. It also highlights the value of abstract compartmental models that can be stored in a library of reusable templates. These templates can be adapted to different scenarios, allowing for efficient modelling tailored to public health challenges.<br><br>TODO: link to model modification section. |
+| <img src="images/concept.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Parsimony**<br>Starting simple reflects a core modeling principle: begin with a straightforward model and add complexity as needed for specific data, details, or public health objectives. This approach enables a quick start with `macpan2` and a smooth transition to more intricate applications. It also underscores the value of abstract compartmental models stored as reusable templates, which can be efficiently adapted to diverse public health challenges. |
 
 ### Starter Model Library
 
@@ -254,13 +181,13 @@ print(sir)
 
     ## ---------------------
     ## Default values:
-    ## ---------------------
     ##  quantity value
     ##      beta   0.2
     ##     gamma   0.1
     ##         N 100.0
     ##         I   1.0
     ##         R   0.0
+    ## ---------------------
     ## 
     ## ---------------------
     ## Before the simulation loop (t = 0):
@@ -525,7 +452,7 @@ functions, which take a loaded model specification object (like the
 ### Compare Simulated and Observed Incidence
 
 Now we are getting to the interesting stuff in this first `Exploration`
-section of the `Exploration-Parameterization-Inference-Stratification`
+section of the `Exploration-Calibration-Inference-Stratification`
 methodology: using data (and other empirical information) and
 simulations together to understand a system. This step is critical in
 epidemiological modelling for applied public health work. No matter how
@@ -642,7 +569,6 @@ print(sir_covid)
 
     ## ---------------------
     ## Default values:
-    ## ---------------------
     ##     quantity        value
     ##         beta 1.785714e-01
     ##        gamma 7.142857e-02
@@ -650,6 +576,7 @@ print(sir_covid)
     ##            I 5.000000e+01
     ##            R 0.000000e+00
     ##  report_prob 1.000000e-01
+    ## ---------------------
     ## 
     ## ---------------------
     ## Before the simulation loop (t = 0):
@@ -883,8 +810,8 @@ happen when the simulated number of `S` individuals drops below the
 number of doses per day. This issue could be addressed by using the
 minimum of `S` and the known number of doses as the realized number of
 doses. However this approach has severe drawbacks when calibrating,
-because as we will learn in the [Parameterization](#parameterization)
-section `macpan2` uses the
+because as we will learn in the [Calibration](#calibration) section
+`macpan2` uses the
 [TMB](https://kaskr.github.io/adcomp/_book/Introduction.html) package
 for optimizing fit to data and TMB becomes much less efficient when we
 use discontinuous functions like this. To address this complexity we can
@@ -931,7 +858,7 @@ however are more strongly impacted by stochasticity.
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | The [awareness](https://github.com/canmod/macpan2/tree/main/inst/starter_models/awareness) model in the library illustrates how `macpan2` can be used in these cases. |
 
-## Parameterization
+## Calibration
 
 Participants will learn how to parameterize models for making inferences
 about a particular population and public health problem.
@@ -1142,7 +1069,7 @@ matrices of transmission parameters. This approach is desecribed
     -   [Philosophy](#philosophy)
     -   [Organization](#organization)
     -   [Code Style](#code-style)
-    -   [Dependencies](#dependencies)
+    -   [Technical Setup](#technical-setup)
 -   [Exploration](#exploration)
     -   [Starter Model Library](#starter-model-library)
     -   [Simulating Dynamics](#simulating-dynamics)
@@ -1164,7 +1091,7 @@ matrices of transmission parameters. This approach is desecribed
         Concentrations](#wastewater-pathogen-concentrations)
     -   [Vital Dynamics](#vital-dynamics)
     -   [Importation and Stochasticity](#importation-and-stochasticity)
--   [Parameterization](#parameterization)
+-   [Calibration](#calibration)
     -   [Modify Default Values](#modify-default-values)
     -   [Express Uncertainty in Model
         Parameters](#express-uncertainty-in-model-parameters)
