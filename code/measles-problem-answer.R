@@ -1,4 +1,5 @@
 ## Measles problem answers
+library(macpan2); library(tidyverse)
 
 pop <- 10000
 
