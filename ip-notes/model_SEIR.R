@@ -5,7 +5,7 @@ invisible(lapply(list.files(here::here("ip-notes", "R"), full.names = TRUE), sou
 # using equations as defined here: https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SEIR_model
 
 # define the model
-seir <- mp_tmb_model_spec(
+model <- mp_tmb_model_spec(
   before = list(
     N ~ S + E + I + R # calculate population size before the simulation loop begins to avoid having to specify a value for it by hand in the defaults list
   ),
@@ -57,8 +57,8 @@ seir <- mp_tmb_model_spec(
     )
   ),
   default = list(
-    mu = 0.1, # 0.01 avg births (and deaths) per individual per day
-    beta = 0.5, # 0.1 avg new infections per infectious per susceptible per day 
+    mu = 0.1, # avg births (and deaths) per individual per day
+    beta = 0.5, # avg new infections per infectious per susceptible per day 
     a = 1/3, # 3 days avg latent period
     gamma = 1/5, # 5 days avg infectious period 
     S = 9999,
@@ -72,14 +72,14 @@ seir <- mp_tmb_model_spec(
 print(seir)
 
 # create simulator
-seir_simulator <- mp_simulator(
-  model = seir,
+simulator <- mp_simulator(
+  model,
   time_steps = 365
-  , outputs = mp_state_vars(seir)
+  , outputs = mp_state_vars(model)
 )
 
 # generate trajectory
-sim <- mp_trajectory(seir_simulator) |> 
+sim <- mp_trajectory(simulator) |> 
   dplyr::mutate(matrix = forcats::as_factor(matrix)) # natural order of state variables
 
 # visualize trajectory
@@ -100,3 +100,16 @@ plot_sim(
   subtitle = "For this set of parameters, we observe convergence to the endemic equilibrium")
 
 # convergence to endemic equilibrium!
+
+# calibration!
+cal = mp_tmb_calibrator(
+  model
+, par = "beta"
+, time = mp_sim_bounds(1, 50)
+, outputs = "infections"
+)
+
+mp_trajectory_par(
+  cal
+, parameter_updates = list(beta = 0.1)
+)
