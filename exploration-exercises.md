@@ -107,9 +107,9 @@ per-capita rates or mass-action rates. There are a variety of
 functions](https://canmod.github.io/macpan2/reference/engine_functions)
 that you can use to build more complex functional forms for these rates.
 
-| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                          |
-|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Building a simple model with seasonal cycles in transmission. What are some other forms of complexity in the functional forms of rates? Try to implement them. Keep in mind that you can use tilde-based expressions to define intermediate variables. |
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                       |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Build a simple model with seasonal cycles in transmission. What are some other forms of complexity in the functional forms of rates? Try to implement them. Keep in mind that you can use tilde-based expressions to define intermediate variables. |
 
 ## Unbalanced Flows
 
@@ -231,13 +231,26 @@ early_on_covid_reports = read_csv("https://raw.githubusercontent.com/canmod/macp
 
 Here are some `ggplot2` recipes for visualizing goodness-of-fit. If you
 had a fitted calibrator called `model_calibrator` that were fitted to
-`observed_data`, you can use this formula.
+`observed_data`, you can use this recipe (not run).
 
 ``` r
 fitted_data = mp_trajectory(model_calibrator)
 (ggplot()
   + geom_point(aes(time, value), data = observed_data)
   + geom_line(aes(time, value), data = fitted_data)
+  + theme_bw()
+)
+```
+
+If you would like to visualize uncertainty around this fitted
+trajectory, you can use the `geom_ribbon` function in `ggplot2`.
+
+``` r
+fitted_data = mp_trajectory_sd(model_calibrator, conf.int = TRUE)
+(ggplot()
+  + geom_point(aes(time, value), data = observed_data)
+  + geom_line(aes(time, value), data = fitted_data)
+  + geom_ribbon(aes(time, ymax = conf.high, ymin = conf.low), data = fitted_data)
   + theme_bw()
 )
 ```
@@ -249,18 +262,28 @@ fitted_data = mp_trajectory(model_calibrator)
 | For one of your calibrated models, use the [mp_tmb_coef](https://canmod.github.io/macpan2/reference/mp_tmb_coef.html) function to get parameter estimates with confidence intervals.                                                                                                                                                                                                                                                                                                                                                |
 | Note that you will need to use `conf.int = TRUE` option that is a little hidden in the documentation, but it is there. Did any of your parameters have an interval that overlaps zero? If so try to fix this by fitting the log transformed version of the offending parameter. If you call the log of your parameter `log_{name-of-parameter}`, the confidence intervals will be automatically back-transformed to the original scale and will not overlap zero. Did you get any NaNs (not a number)? This is a sign of a bad fit. |
 
-## Forecasts
+## Forecasts and Scenarios
 
 Let’s keep it simple again and get more practice simulating and fitting.
+You can use this calibrated model to practice making forecasts and
+exploring scenarios.
 
 ``` r
 exercise(
-    "Simulate 50 time steps of incidence (i.e., the infection flow) from the SIR model in the library with defaults. Create a calibrator but change the default values of `beta` and `gamma` so that the optimizer will need to do work to find the true values."
+    "Simulate 50 time steps of incidence (i.e., the infection flow) from the SIR model in the library with defaults. Create a calibrator but change the default values of `beta` and `gamma` so that the optimizer will need to do work to find the true values. Then calibrate your model to the simulation data using [mp_optimize](https://canmod.github.io/macpan2/reference/mp_optimize.html). After optimizing use [mp_forecaster](https://canmod.github.io/macpan2/reference/mp_forecaster) to extend 50 more time steps, so that the entire simulation would be 100 time steps. Use [mp_trajectory_sd](https://canmod.github.io/macpan2/reference/mp_trajectory.html) to produce forecasts with confidence intervals."
 )
 ```
 
-| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                               |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Simulate 50 time steps of incidence (i.e., the infection flow) from the SIR model in the library with defaults. Create a calibrator but change the default values of `beta` and `gamma` so that the optimizer will need to do work to find the true values. |
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Simulate 50 time steps of incidence (i.e., the infection flow) from the SIR model in the library with defaults. Create a calibrator but change the default values of `beta` and `gamma` so that the optimizer will need to do work to find the true values. Then calibrate your model to the simulation data using [mp_optimize](https://canmod.github.io/macpan2/reference/mp_optimize.html). After optimizing use [mp_forecaster](https://canmod.github.io/macpan2/reference/mp_forecaster) to extend 50 more time steps, so that the entire simulation would be 100 time steps. Use [mp_trajectory_sd](https://canmod.github.io/macpan2/reference/mp_trajectory.html) to produce forecasts with confidence intervals. |
 
-## Scenario
+``` r
+exercise(
+    "Create a scenario for beta, where transmission increases by a factor of 1.2 at time 60 (10 time steps after the data end). The answers for this exercise are [here](https://github.com/canmod/macpan-workshop/blob/main/code/simple-scenario.R)."
+)
+```
+
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                    |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Create a scenario for beta, where transmission increases by a factor of 1.2 at time 60 (10 time steps after the data end). The answers for this exercise are [here](https://github.com/canmod/macpan-workshop/blob/main/code/simple-scenario.R). |
