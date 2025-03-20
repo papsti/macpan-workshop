@@ -1,7 +1,9 @@
 Exploration Exercises
 ================
 
-## `ggplot` Recipes
+# Exploration
+
+## Recipes for Quick-and-Dirty Visualization
 
 Simulations from `macpan2` come in a standard format with columns
 described
@@ -12,15 +14,20 @@ The key point is that there is always a `time`, `matrix`, and `value`
 column. Let’s focus on those. We can use this SIR example.
 
 ``` r
-library(macpan2); library(ggplot2)
+library(macpan2); library(tidyverse)
 ```
 
-    ## 
-    ## Attaching package: 'ggplot2'
-
-    ## The following object is masked _by_ '.GlobalEnv':
-    ## 
-    ##     theme_bw
+    ## ── Attaching core tidyverse packages ────────────────────────────────────────────── tidyverse 2.0.0 ──
+    ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+    ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+    ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+    ## ✔ purrr     1.0.2     
+    ## ── Conflicts ──────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::all_equal() masks macpan2::all_equal()
+    ## ✖ dplyr::filter()    masks stats::filter()
+    ## ✖ dplyr::lag()       masks stats::lag()
+    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 
 ``` r
 sir = mp_tmb_library("starter_models", "sir", package = "macpan2")
@@ -124,9 +131,136 @@ describes two other kinds of flows that are not balanced.
 |:---------------------------------------------------|
 | Add a wastewater compartment to an existing model. |
 
-## Initializing Variables
-
-So far we have initialized variables by adding numerical values to the
-`default` list.
+| <img src="images/exercise.svg" width="120" />                                             |
+|:------------------------------------------------------------------------------------------|
+| Add a vaccinated compartment to an existing model. How will you model vaccination supply? |
 
 ## Relationships Parameters and Simulations
+
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Use the [mp_tmb_calibrator](https://canmod.github.io/macpan2/reference/mp_tmb_calibrator.html) and [mp_trajectory_par](https://canmod.github.io/macpan2/reference/mp_trajectory) functions to plot different trajectories of a single variable in a compartmental model, with each trajectory associated with a change in a model parameter. For example, you could use the SIR model to plot different incidence trajectories for different values of the transmission rate, `beta`. |
+
+| <img src="images/tip.svg" width="120" />                 |
+|:---------------------------------------------------------|
+| You will need to loop over a set of beta values somehow. |
+
+## Modifying Model Specifications
+
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                            |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Use [mp_tmb_insert](https://canmod.github.io/macpan2/reference/mp_tmb_insert) to reparameterize an existing SIR model specification. Use the relationship that `R0 = beta/gamma` to parameterize the model in terms of `R0` and `gamma`. |
+
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Create a standard R vector containing as many elements as time steps. Each element gives the value that you want for `R0` at each time. Use [mp_tmb_insert](https://canmod.github.io/macpan2/reference/mp_tmb_insert) to add this vector to the default list. Using this same function, insert an expression at the beginning of the `during` phase that updates `beta` using the appropriate value that the current time step. Note that the output of `x[time_step(1)]` is the value of the vector `x` associated with the current time step. |
+
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                 |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Update the SIR model so that it is parameterized in terms of the log of the recovery rate, `gamma`, as opposed to `gamma`. This can be helpful when fitting models to data, because it ensures that `gamma` must be positive. |
+
+## Understand the Math Behind Simulation Models
+
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                   |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Explore the functions for [printing out information about model specifications](https://canmod.github.io/macpan2/reference/index.html#unpack-model-specifications) and print out various features of the model. |
+
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                               |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Use the [mp_expand](https://canmod.github.io/macpan2/reference/mp_expand.html) function to expand the flows-based form of the SIR model into a more explicit form. Using the output of this function, identify the type of dynamical model? |
+
+# Calibration
+
+## Calibrate to Simulation Data
+
+The first thing you should do when trying a new model fitting technique,
+is to see what happens when you fit to data simulated from your model.
+Here are data on the number of infectious individuals (or prevalence)
+generated by an SIR model.
+
+``` r
+simulated_sir = read_csv("https://raw.githubusercontent.com/canmod/macpan-workshop/refs/heads/main/data/simulated-sir.csv")
+```
+
+    ## Rows: 100 Columns: 3
+    ## ── Column specification ──────────────────────────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (1): matrix
+    ## dbl (2): time, value
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+| <img src="images/exercise.svg" width="120" />                                                                                                                               |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Calibrate the SIR model to these data generated from the SIR model. Note that the default values of the SIR model have been changed so that this is not a trivial exercise. |
+
+| <img src="images/tip.svg" width="120" />                                      |
+|:------------------------------------------------------------------------------|
+| The answers are [here](https://canmod.github.io/macpan2/articles/calibration) |
+
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                              |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Calibrate to a subset of these data that start after time step 25, to simulate the common problem that we do not get data at the beginning of an epidemic – although you would know more … is surveillance getting better? |
+
+| <img src="images/tip.svg" width="120" />                                                               |
+|:-------------------------------------------------------------------------------------------------------|
+| You should use the [mp_sim_offset](https://canmod.github.io/macpan2/reference/mp_sim_offset) function. |
+
+``` r
+early_on_covid_reports = read_csv("https://raw.githubusercontent.com/canmod/macpan-workshop/refs/heads/main/data/early_covid_on_reports.csv")
+```
+
+    ## Rows: 147 Columns: 4
+    ## ── Column specification ──────────────────────────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr  (2): province, var
+    ## dbl  (1): value
+    ## date (1): date
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Modify the SIR model and calibrate it to the initial phase of the `early_on_covid_reports` data. the SIR model to these data generated from the SIR model. You will need to change the names of the variables in the data using the [rename](https://dplyr.tidyverse.org/reference/rename.html) function in the `tidyverse`. Note that you will need to update the default values to be more suitable for Ontario. For example, the population of Ontario is about 14 million. You might want to modify other values. What other modifications could you make to the model to fit better? This is meant to be a challenge. My imperfect answer is [here](https://github.com/canmod/macpan-workshop/blob/main/code/initial-fit-covid.R), but try not to look. |
+
+# Inference
+
+## Visualize Goodness-of-Fit
+
+Here are some `ggplot2` recipes for visualizing goodness-of-fit. If you
+had a fitted calibrator called `model_calibrator` that were fitted to
+`observed_data`, you can use this formula.
+
+``` r
+fitted_data = mp_trajectory(model_calibrator)
+(ggplot()
+  + geom_point(aes(time, value), data = observed_data)
+  + geom_line(aes(time, value), data = fitted_data)
+  + theme_bw()
+)
+```
+
+## Confidence Intervals for Estimated Parameters
+
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| For one of your calibrated models, use the [mp_tmb_coef](https://canmod.github.io/macpan2/reference/mp_tmb_coef.html) function to get parameter estimates with confidence intervals.                                                                                                                                                                                                                                                                                                                                                |
+| Note that you will need to use `conf.int = TRUE` option that is a little hidden in the documentation, but it is there. Did any of your parameters have an interval that overlaps zero? If so try to fix this by fitting the log transformed version of the offending parameter. If you call the log of your parameter `log_{name-of-parameter}`, the confidence intervals will be automatically back-transformed to the original scale and will not overlap zero. Did you get any NaNs (not a number)? This is a sign of a bad fit. |
+
+## Forecasts
+
+Let’s keep it simple again and get more practice simulating and fitting.
+
+``` r
+exercise(
+    "Simulate 50 time steps of incidence (i.e., the infection flow) from the SIR model in the library with defaults. Create a calibrator but change the default values of `beta` and `gamma` so that the optimizer will need to do work to find the true values."
+)
+```
+
+| <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                               |
+|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Simulate 50 time steps of incidence (i.e., the infection flow) from the SIR model in the library with defaults. Create a calibrator but change the default values of `beta` and `gamma` so that the optimizer will need to do work to find the true values. |
+
+## Scenario
