@@ -3,7 +3,7 @@ Workshop on `macpan2` – Companion Materials
 
 Author: [Steve Walker](https://github.com/stevencarlislewalker)
 
-Last Updated: 2025-01-10
+Last Updated: 2025-03-20
 
 [![CC BY-NC-SA
 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
@@ -24,7 +24,7 @@ this)
     -   [Philosophy](#philosophy)
     -   [Organization](#organization)
     -   [Code Style](#code-style)
-    -   [Dependencies](#dependencies)
+    -   [Technical Setup](#technical-setup)
 -   [Exploration](#exploration)
     -   [Starter Model Library](#starter-model-library)
     -   [Simulating Dynamics](#simulating-dynamics)
@@ -46,7 +46,7 @@ this)
         Concentrations](#wastewater-pathogen-concentrations)
     -   [Vital Dynamics](#vital-dynamics)
     -   [Importation and Stochasticity](#importation-and-stochasticity)
--   [Parameterization](#parameterization)
+-   [Calibration](#calibration)
     -   [Modify Default Values](#modify-default-values)
     -   [Express Uncertainty in Model
         Parameters](#express-uncertainty-in-model-parameters)
@@ -76,56 +76,29 @@ participating in this workshop. The instructor will review this syllabus
 with participants before the sessions start.
 
 The syllabus provides a roadmap for the workshop, guiding participants
-through the exploration-parameterization-inference-stratification
-strategy essential for compartmental modeling using the `macpan2`
-package. Each session is organized around these steps, offering a
-structured approach to model refinement. Participants will follow a
-practical example that demonstrates each phase of the strategy, with
-companion materials available for deeper exploration of related skills.
-Each session contains exercises designed to reinforce key concepts and
-encourage participants to apply lessons to their own compartmental model
-diagrams. For those without a pre-existing model or whose models are not
-applicable, a detailed example model is provided to ensure a hands-on
-learning experience. By the end of the workshop, participants will have
-the skills to evaluate the suitability of compartmental modeling for
-public health problems, develop models using macpan2, navigate its
-documentation to address challenges, and provide constructive feedback
-for improving the tool.
+through the exploration-calibration-inference-stratification strategy
+that can be used for compartmental modeling. By the end of the workshop,
+participants will have the skills to develop compartmental models using
+macpan2, navigate its documentation to address challenges, and provide
+constructive feedback for improving the tool.
 
 ### Philosophy
 
-The goal of `macpan2` is *not* to implement cutting edge modelling and
-statistical techniques. Instead the goal is to implement well-understood
-techniques, optimized for use by epidemiologists who are tasked with
-answering real-world public health questions using data-calibrated
-compartmental models.
+The goal of `macpan2` is to implement well-understood techniques, for
+use by epidemiologists who are tasked with using data-calibrated
+compartmental models to answer public health questions.
 
 ### Organization
 
-Our effort to present standard tools in a convenient manner has led us
-to develop concepts that encapsulate how I believe modellers do (or
-should) think. By building and updating our software with these concepts
-in mind, I seek to converge on a tool that will help modellers focus
-more on epidemiology and less on computational details. We highlight
-these concepts in special boxes.
-
-| <img src="images/concept.svg" width="120" />                                                                                                                                        |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **User Feedback**<br>Our modelling concepts are hypotheses that I would like feedback on. What concepts seem helpful/useful and what concepts seem harmful/useless? |
-
-Ideally these concepts would lead to a perfectly intuitive tool. In
-reality I recognize that there are important technical details that you
-will need to learn to use the tool effectively. We try to collect the
-more technical ideas in tip boxes.
+We collect some of the more technical ideas in tip boxes.
 
 | <img src="images/tip.svg" width="120" />                                                                                             |
 |:-------------------------------------------------------------------------------------------------------------------------------------|
 | Tip boxes like this contain technical information that could interrupt the flow of ideas, but is too important to bury in footnotes. |
 
-If you’re attending this workshop, you’re already a highly skilled
+If you’re attending this workshop, you’re already an experienced
 modeller. Many of the concepts will be familiar to you, so you may gain
-more by actively engaging with the tool itself. To support this process
-of self-discovery, I have designed a series of exercises.
+more by doing illustrative exercises.
 
 | <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                                                                                 |
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -140,110 +113,62 @@ We will often use the [base R pipe
 operator](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/#pipes),
 `|>`, when it improves readability.
 
-### Dependencies
+### Technical Setup
 
-The `macpan2` package is designed to be used with two other standard
-packages, and so all of the code in these materials assumes that the
-following packages are loaded.
-
-``` r
-library(macpan2) ## obviously
-library(ggplot2)
-library(dplyr)
-library(lubridate)
-```
-
-This document was produced with the following R environment.
-
-``` r
-sessionInfo() |> print()
-```
-
-    ## R version 4.4.2 (2024-10-31)
-    ## Platform: x86_64-apple-darwin20
-    ## Running under: macOS Sequoia 15.0.1
-    ## 
-    ## Matrix products: default
-    ## BLAS:   /Library/Frameworks/R.framework/Versions/4.4-x86_64/Resources/lib/libRblas.0.dylib 
-    ## LAPACK: /Library/Frameworks/R.framework/Versions/4.4-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
-    ## 
-    ## locale:
-    ## [1] en_CA.UTF-8/en_CA.UTF-8/en_CA.UTF-8/C/en_CA.UTF-8/en_CA.UTF-8
-    ## 
-    ## time zone: America/New_York
-    ## tzcode source: internal
-    ## 
-    ## attached base packages:
-    ## [1] stats     graphics  grDevices utils     datasets  methods   base     
-    ## 
-    ## other attached packages:
-    ## [1] lubridate_1.9.3 dplyr_1.1.4     ggplot2_3.5.1   macpan2_1.13.0 
-    ## 
-    ## loaded via a namespace (and not attached):
-    ##  [1] vctrs_0.6.5       cli_3.6.3         knitr_1.49        rlang_1.1.4      
-    ##  [5] xfun_0.49         generics_0.1.3    jsonlite_1.8.9    glue_1.8.0       
-    ##  [9] colorspace_2.1-1  TMB_1.9.15        htmltools_0.5.8.1 fansi_1.0.6      
-    ## [13] scales_1.3.0      rmarkdown_2.29    grid_4.4.2        tibble_3.2.1     
-    ## [17] evaluate_1.0.1    munsell_0.5.1     MASS_7.3-61       fastmap_1.2.0    
-    ## [21] yaml_2.3.10       lifecycle_1.0.4   memoise_2.0.1     compiler_4.4.2   
-    ## [25] timechange_0.3.0  pkgconfig_2.0.3   lattice_0.22-6    digest_0.6.37    
-    ## [29] R6_2.5.1          tidyselect_1.2.1  utf8_1.2.4        oor_0.0.2        
-    ## [33] pillar_1.9.0      magrittr_2.0.3    Matrix_1.7-1      withr_3.0.2      
-    ## [37] tools_4.4.2       gtable_0.3.6      cachem_1.1.0
+Instructions for setting your computer for using `macpan2` are
+[here](https://canmod.github.io/macpan-workshop/technical-preparation).
 
 ## Exploration
 
-Participants will learn how to explore and modify models, and informally
-compare them with observed data.
+In this section you will learn how to explore and specify compartmental
+models, and informally compare them with observed data.
 
-At the core of macpan2 are model specifications, which primarily define
-the flows between compartments and set default values for parameters.
-These specifications offer a clear and systematic way to describe the
-behavior of a system, starting with the foundational elements of
-compartmental models. While additional complexities, such as vital
-dynamics, external sources and sinks, or initialization of state
-variables, are often necessary, I begin with simple specifications.
+At the core of `macpan2` are model specifications, which define
+compartment flows and set default parameter values. These specifications
+provide a systematic framework for describing system behavior, starting
+with the foundational elements of compartmental models. While additional
+complexities (e.g., vital dynamics) are often required, we are going to
+be focusing on simple models.
 
-| <img src="images/concept.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Parsimony**<br>Starting with simplicity reflects an essential modelling principle: begin with a straightforward model and gradually add complexity as the situation demands, whether for specific data, additional details, or particular public health objectives. This approach will help you quickly get started with macpan2 and transition smoothly to more intricate applications. It also highlights the value of abstract compartmental models that can be stored in a library of reusable templates. These templates can be adapted to different scenarios, allowing for efficient modelling tailored to public health challenges.<br><br>TODO: link to model modification section. |
+| <img src="images/concept.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Parsimony**<br>Starting simple reflects a good modeling principle: begin with a straightforward model and add complexity as needed for specific data, details, or public health objectives. This approach enables a quick start with `macpan2` and a smooth transition to more intricate applications. It also underscores the value of abstract compartmental models stored as reusable templates, which can be efficiently adapted to diverse public health challenges. |
 
 ### Starter Model Library
 
-Throughout the workshop, I provide you with starting points that take
-care of much of the boilerplate, enabling you to concentrate on the
-unique aspects of your applications. For instance, you will explore a
-library of dynamical models, identify simple specifications, and see how
-they define flows and default parameter values. Hands-on exercises will
-guide you to experiment with these models, helping you uncover their
-structure and applications in a variety of public health contexts.
+The `macpan2` [model
+library](https://canmod.github.io/macpan2/articles/example_models)
+provides some example models as a place to start.
 
-To list available models in the macpan2 library, use the following
-command:
+To list available models in the macpan2 library:
 
 ``` r
 show_models()
 ```
 
-| Directory                                                                                                                    | Title                    | Description                                                                                                     |
-|:-----------------------------------------------------------------------------------------------------------------------------|:-------------------------|:----------------------------------------------------------------------------------------------------------------|
-| [awareness](https://github.com/canmod/macpan2/tree/main/inst/starter_models/awareness)                                       | Awareness Models         | Behaviour modifications in response to death                                                                    |
-| [hiv](https://github.com/canmod/macpan2/tree/main/inst/starter_models/hiv)                                                   | HIV                      | A simple HIV model                                                                                              |
-| [lotka_volterra_competition](https://github.com/canmod/macpan2/tree/main/inst/starter_models/lotka_volterra_competition)     | Lotka-Volterra           | Simple two-species competition model                                                                            |
-| [lotka_volterra_predator_prey](https://github.com/canmod/macpan2/tree/main/inst/starter_models/lotka_volterra_predator_prey) | Lotka-Volterra           | Simple predator-prey model                                                                                      |
-| [macpan_base](https://github.com/canmod/macpan2/tree/main/inst/starter_models/macpan_base)                                   | Macpan Base              | Re-implementation of the McMaster group’s COVID-19 model                                                        |
-| [nfds](https://github.com/canmod/macpan2/tree/main/inst/starter_models/nfds)                                                 | NFDS and Vaccine Design  | An ecological model using population genomics to design optimal vaccines as implemented in Colijn et al. (2020) |
-| [seir](https://github.com/canmod/macpan2/tree/main/inst/starter_models/seir)                                                 | Basic SEIR               | Simple epidemic model with an exposed class                                                                     |
-| [shiver](https://github.com/canmod/macpan2/tree/main/inst/starter_models/shiver)                                             | SHIVER = SEIR + H + V    | A modified SEIR model with Hospitalization and Vaccination                                                      |
-| [si](https://github.com/canmod/macpan2/tree/main/inst/starter_models/si)                                                     | Basic SI                 | A very simple epidemic model                                                                                    |
-| [sir](https://github.com/canmod/macpan2/tree/main/inst/starter_models/sir)                                                   | Basic SIR                | A very simple epidemic model                                                                                    |
-| [sir_demog](https://github.com/canmod/macpan2/tree/main/inst/starter_models/sir_demog)                                       | SIR with Demography      | An SIR model with birth and death                                                                               |
-| [sir_mosquito](https://github.com/canmod/macpan2/tree/main/inst/starter_models/sir_mosquito)                                 | Mosquito-Vector SIR      | SIR model for mosquito vectors                                                                                  |
-| [sir_waning](https://github.com/canmod/macpan2/tree/main/inst/starter_models/sir_waning)                                     | SIR with Waning Immunity | A basic SIR model with a flow from R back to S                                                                  |
-| [ww](https://github.com/canmod/macpan2/tree/main/inst/starter_models/ww)                                                     | Wastewater Model         | Macpan base with an additional wastewater component                                                             |
+| Directory                                                                                                                    | Title                           | Description                                                                                                     |
+|:-----------------------------------------------------------------------------------------------------------------------------|:--------------------------------|:----------------------------------------------------------------------------------------------------------------|
+| [awareness](https://github.com/canmod/macpan2/tree/main/inst/starter_models/awareness)                                       | Awareness Models                | Behaviour modifications in response to death                                                                    |
+| [hiv](https://github.com/canmod/macpan2/tree/main/inst/starter_models/hiv)                                                   | HIV                             | A simple HIV model                                                                                              |
+| [lotka_volterra_competition](https://github.com/canmod/macpan2/tree/main/inst/starter_models/lotka_volterra_competition)     | Lotka-Volterra                  | Simple two-species competition model                                                                            |
+| [lotka_volterra_predator_prey](https://github.com/canmod/macpan2/tree/main/inst/starter_models/lotka_volterra_predator_prey) | Lotka-Volterra                  | Simple predator-prey model                                                                                      |
+| [macpan_base](https://github.com/canmod/macpan2/tree/main/inst/starter_models/macpan_base)                                   | Macpan Base                     | Re-implementation of the McMaster group’s COVID-19 model                                                        |
+| [nfds](https://github.com/canmod/macpan2/tree/main/inst/starter_models/nfds)                                                 | NFDS and Vaccine Design         | An ecological model using population genomics to design optimal vaccines as implemented in Colijn et al. (2020) |
+| [seir](https://github.com/canmod/macpan2/tree/main/inst/starter_models/seir)                                                 | Basic SEIR                      | Simple epidemic model with an exposed class                                                                     |
+| [shiver](https://github.com/canmod/macpan2/tree/main/inst/starter_models/shiver)                                             | SHIVER = SEIR + H + V           | A modified SEIR model with Hospitalization and Vaccination                                                      |
+| [si](https://github.com/canmod/macpan2/tree/main/inst/starter_models/si)                                                     | Basic SI                        | A very simple epidemic model                                                                                    |
+| [sir](https://github.com/canmod/macpan2/tree/main/inst/starter_models/sir)                                                   | Basic SIR                       | A very simple epidemic model                                                                                    |
+| [sir_demog](https://github.com/canmod/macpan2/tree/main/inst/starter_models/sir_demog)                                       | SIR with Demography             | An SIR model with birth and death                                                                               |
+| [sir_mosquito](https://github.com/canmod/macpan2/tree/main/inst/starter_models/sir_mosquito)                                 | Mosquito-Vector SIR             | SIR model for mosquito vectors                                                                                  |
+| [sir_waning](https://github.com/canmod/macpan2/tree/main/inst/starter_models/sir_waning)                                     | SIR with Waning Immunity (SIRS) | A basic SIR model with a flow from R back to S                                                                  |
+| [ww](https://github.com/canmod/macpan2/tree/main/inst/starter_models/ww)                                                     | Wastewater Model                | Macpan base with an additional wastewater component                                                             |
 
 This function displays the available models, along with their
-directories, titles, and descriptions.
+directories, titles, and descriptions. A simpler function just lists the
+models, `mp_list_models`. The
+[mp_model_docs](https://canmod.github.io/macpan2/reference/mp_model_docs)
+function will take you to the documentation for any particular model in
+this list.
 
 To examine a specific model, such as the SIR model, load it into R:
 
@@ -254,13 +179,13 @@ print(sir)
 
     ## ---------------------
     ## Default values:
-    ## ---------------------
     ##  quantity value
     ##      beta   0.2
     ##     gamma   0.1
     ##         N 100.0
     ##         I   1.0
     ##         R   0.0
+    ## ---------------------
     ## 
     ## ---------------------
     ## Before the simulation loop (t = 0):
@@ -278,55 +203,56 @@ There are three parts to this specification.
 
 -   **Default values:** The default values that model quantities take
     before each simulation begins[^1]. In the `sir` example there are
-    two parameters, `beta` and `gamma`, the total population size, `N`,
-    and the initial values of two state variables, `I` and `R`.
--   **Before the simulation loop:** Expressions that get evaluated by
-    `macpan2` before the dynamical simulation loop. In the `sir` example
-    the initial value of `S` is computed. Note that the specification
-    could have placed `S` in the defaults, but as we will see the choice
-    of whether to (1) place the initial value of a quantity in the
-    defaults or (2) compute it in `macpan2` before the simulation loop
-    begins will depend on a number of considerations.
+    two parameters (the transmission rate `beta` and removal rate
+    `gamma`), the total population size, `N`, and the initial values of
+    two state variables, `I` and `R`.
+-   **Before the simulation loop:** Expressions that `macpan2` evaluates
+    before the dynamical simulation loop. In the `sir` example the
+    initial value of `S` is computed. The specification could have
+    placed `S` in the defaults: in this case we compute it before the
+    simulation loop begins instead in order to allow it to depend on
+    other model quantities.
 -   **At every iteration of the simulation loop:** Expressions that get
     evaluated iteratively during the simulation loop. In the `sir`
     example there are two flows, which I discuss more throughout the
     next few sections.
 
-| <img src="images/tip.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Model specification objects, like `sir` above, can be produced using several different functions. Above I produced such an object using `mp_tmb_library()`, which reads pre-existing specifications in from the library. If you were to go the [directory](https://github.com/canmod/macpan2/tree/main/inst/starter_models/sir) that defines this library model you would see [the script](https://github.com/canmod/macpan2/blob/main/inst/starter_models/sir/tmb.R) that actually produces the specification. This script uses the `mp_tmb_model_spec()` function to do so, and you can use this function directly yourself to produce your own model specifications. Later we will learn about other functions that take a model specification and return a modified version of this specification. This is useful when a model needs to be modified so that it can be compared with data (e.g., account for under-reporting, time-varying transmission rates in response to school closures). |
+| <img src="images/tip.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| You can use several functions to produce model specification objects, like `sir` above, can be produced using several different functions. Above I produced such an object using `mp_tmb_library()`, which reads pre-existing specifications in from the library. If you go to the \[directory\]s(<https://github.com/canmod/macpan2/tree/main/inst/starter_models/sir>) that defines this library model you will see [the R script](https://github.com/canmod/macpan2/blob/main/inst/starter_models/sir/tmb.R) that actually produces the specification, using the `mp_tmb_model_spec()` function; you can use this function yourself to produce your own model specifications. Later we will learn about other functions that take a model specification and return a modified version of this specification. This is useful when a model needs to be modified so that it can be compared with data (e.g., account for under-reporting, time-varying transmission rates in response to school closures). |
 
-| <img src="images/tip.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| The `sir` model illustrates the two kinds of expressions that can be used to define model behaviour: (1) Generic math expressions (e.g., `S ~ N - I - R`) and (2) flows among compartments (e.g., `mp_per_capita_flows(from ...)`). In generic math expressions, the tilde, `~`, is used to denote assignment. For example, the expression, `S ~ N - I - R`, says that the result of `N - I - R` is assigned to the quantity, `S`. Any function listed [here](https://canmod.github.io/macpan2/reference/engine_functions) can be used on the right-hand-side of these expressions. Each flow expression corresponds to a single flow between compartments. The tilde-based math expressions and flow expressions can be mixed to provide a great deal of flexibility in model specifications. Throughout I will discuss the relative advantages and disadvantages of using one or the other. |
+| <img src="images/tip.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| The `sir` model illustrates the two kinds of expressions that can be used to define model behaviour: (1) Generic math expressions (e.g., `S ~ N - I - R`) and (2) flows among compartments (e.g., `mp_per_capita_flows(from ...)`). In generic math expressions, the tilde, `~`, is used to denote assignment. For example, the expression, `S ~ N - I - R`, says that the result of `N - I - R` is assigned to the quantity, `S`. Any function listed [here](https://canmod.github.io/macpan2/reference/engine_functions) can be used on the right-hand-side of these expressions. Each flow expression corresponds to a single flow between compartments. The tilde-based math expressions and flow expressions can be mixed to provide a great deal of flexibility in model specifications. |
 
 ### Simulating Dynamics
 
 The main thing that you will do with model specifications like `sir` is
-to simulate dynamics under these models. Because specifications come
-with default values for parameters and initial states, they can be
-simulated from without any further specification. This does not mean
-that model library specifications will typically be ready for any
-particular application without modification, and I will discuss many
-types of modifications that can be made to these models today. However,
-typically the first thing to do when given a new model is to simulate
-from it, so you develop this skill immediately.
+to simulate dynamics under these models. Simulation is useful to explore
+scenarios and to prepare for calibrating models to data. Because
+specifications come with default values for parameters and initial
+states, they can be simulated from without any further information.
+However, you will almost almost need to modify a built-in model
+specification to apply it to your particular situation; we will discuss
+some of the ways to modify these models.
+
+Typically the first thing to do to understand and validate a new model
+is to simulate from it, so we will work on this immediately.
 
 | <img src="images/exercise.svg" width="120" />                                                                                                    |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------|
 | Follow this [quick-start guide](https://canmod.github.io/macpan2/articles/quickstart) to simulate from the `sir` model using its default values. |
 
-| <img src="images/concept.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Simple, Consistent, and General Format for Simulation Output**<br>Simulations of `macpan2` models are always returned in the same format – there are no options. This inflexibility is deliberate. The simulation data format is simple and easily adapted to whatever data organizational preferences you might have. This choice also benefits us because it means we do not need to worry about reinventing data preparation tools (many of which already exist) and focus on epidemiological modelling functionality (of which fewer options exist). [This](https://canmod.github.io/macpan2/articles/quickstart#generating-simulations) article gives a brief but full description of the data format. |
+| <img src="images/concept.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Simple, Consistent, and General Format for Simulation Output**<br>Simulations of `macpan2` models are always return simulation outputs in the same format, a *long format* data frame where each output variable (e.g., `S`, `I`, `R`) has a separate row for every time. This output format is simple, works well with existing R frameworks (e.g., `tidyverse`/`ggplot2`) and can easily be restructured to other formats (e.g., with `tidyr::pivot_wider()`). [This](https://canmod.github.io/macpan2/articles/quickstart#generating-simulations) article gives a brief but full description of the data format. |
 
 ### Relating Model Specifications to Box Diagrams
 
 Model specification objects, such as the `sir` object produced in the
 previous section, are essentially textual descriptions of compartmental
-model flow diagrams. Below I print out the *during the simulation loop*
-portion of the `sir` object, and plot the corresponding flow diagram,
-highlighting the relationship between the two.
+model flow diagrams. Below we compare the *during the simulation loop*
+portion of the `sir` object with the corresponding flow diagram:
 
 ``` r
 mp_print_during(sir)
@@ -347,9 +273,9 @@ mp_print_during(sir)
 
 ### Relating Model Specifications to Explicit Dynamics
 
-One aspect of the previous model printout that might be unclear to you
-is the specific mathematical meaning of the `mp_per_capita_flow`
-functions, and their arguments.
+One possibly unclear aspect of the previous model printout is the
+specific mathematical meaning of the `mp_per_capita_flow` functions, and
+their arguments.
 
 ``` r
 mp_print_during(sir)
@@ -362,7 +288,8 @@ mp_print_during(sir)
     ##      abs_rate = "infection")
     ## 2: mp_per_capita_flow(from = "I", to = "R", rate = "gamma", abs_rate = "recovery")
 
-The technical documentation for this (and related) functions is
+You can find the technical documentation for this function (and related
+functions)
 [here](https://canmod.github.io/macpan2/reference/mp_per_capita_flow),
 but the following set of definitions summarizes the terminology.
 
@@ -499,12 +426,7 @@ the absolute flow rates per time step.
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Write out by hand the last four lines of an expanded SEIR model.<br><br>[Read](https://canmod.github.io/macpan2/articles/example_models#using-examples) the [SEIR model](https://github.com/canmod/macpan2/tree/main/inst/starter_models/seir) from the model library and test if you were correct. |
 
-TODO: Simulate dynamics with different approaches.
-
 ### Basics of Modifying Model Specifications
-
-The models in the model library are intended to provide a place to
-start, so let’s get started doing this.
 
 | <img src="images/exercise.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -524,17 +446,11 @@ functions, which take a loaded model specification object (like the
 
 ### Compare Simulated and Observed Incidence
 
-Now we are getting to the interesting stuff in this first `Exploration`
-section of the `Exploration-Parameterization-Inference-Stratification`
-methodology: using data (and other empirical information) and
-simulations together to understand a system. This step is critical in
-epidemiological modelling for applied public health work. No matter how
-fancy you get with your techniques, your model must always be relevant
-to a specific place, time, and public health concern.
+Now we will use data and simulations together to understand a system.
 
-| <img src="images/concept.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Data Prep and Model Modifications Are Two Sides of the Same Coin**<br>To confront a model with data one needs to do two general classes of things: (1) access and prepare data and (2) modify the model so that it is relevant to those data. Typically there is an interplay between how to prepare data and how to modify the model. For example, one might choose to deal with under-reporting by multiplying the incidence time-series by a reasonably-chosen constant. In this case one might not need to modify the model because observed incidence would be comparable with the number of modelled new cases each time-step. On the other hand, one might choose to post-process the modelled number of new cases by multiplying them by a reporting probability, and then comparing these simulations with the raw observed data. In this section I will explore a specific path to handling these issues. |
+| <img src="images/concept.svg" width="120" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Data Prep and Model Modifications Are Two Sides of the Same Coin**<br>To confront a model with data one needs to do two general classes of things: (1) access and prepare data and (2) modify the model so that it is relevant to those data. Typically there is an interplay between how to prepare data and how you set up (or modify) the model. For example, you might choose to deal with under-reporting by dividing the incidence time-series by a known underreporting rate. In this case you wouldn’t need to modify the model, because scaling the data would account for underreporting. On the other hand, you might choose to transform the modelled incidence (number of new cases per time period) into a modelled *observed* incidence by multiplying the incidence by the reporting probability, and then comparing the simulations with the raw observed data. In this section we will explore a specific path to handling these issues. |
 
 Let’s get started by loading in some familiar Ontario COVID-19 data.
 
@@ -642,7 +558,6 @@ print(sir_covid)
 
     ## ---------------------
     ## Default values:
-    ## ---------------------
     ##     quantity        value
     ##         beta 1.785714e-01
     ##        gamma 7.142857e-02
@@ -650,6 +565,7 @@ print(sir_covid)
     ##            I 5.000000e+01
     ##            R 0.000000e+00
     ##  report_prob 1.000000e-01
+    ## ---------------------
     ## 
     ## ---------------------
     ## Before the simulation loop (t = 0):
@@ -883,8 +799,8 @@ happen when the simulated number of `S` individuals drops below the
 number of doses per day. This issue could be addressed by using the
 minimum of `S` and the known number of doses as the realized number of
 doses. However this approach has severe drawbacks when calibrating,
-because as we will learn in the [Parameterization](#parameterization)
-section `macpan2` uses the
+because as we will learn in the [Calibration](#calibration) section
+`macpan2` uses the
 [TMB](https://kaskr.github.io/adcomp/_book/Introduction.html) package
 for optimizing fit to data and TMB becomes much less efficient when we
 use discontinuous functions like this. To address this complexity we can
@@ -931,7 +847,7 @@ however are more strongly impacted by stochasticity.
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | The [awareness](https://github.com/canmod/macpan2/tree/main/inst/starter_models/awareness) model in the library illustrates how `macpan2` can be used in these cases. |
 
-## Parameterization
+## Calibration
 
 Participants will learn how to parameterize models for making inferences
 about a particular population and public health problem.
@@ -1142,7 +1058,7 @@ matrices of transmission parameters. This approach is desecribed
     -   [Philosophy](#philosophy)
     -   [Organization](#organization)
     -   [Code Style](#code-style)
-    -   [Dependencies](#dependencies)
+    -   [Technical Setup](#technical-setup)
 -   [Exploration](#exploration)
     -   [Starter Model Library](#starter-model-library)
     -   [Simulating Dynamics](#simulating-dynamics)
@@ -1164,7 +1080,7 @@ matrices of transmission parameters. This approach is desecribed
         Concentrations](#wastewater-pathogen-concentrations)
     -   [Vital Dynamics](#vital-dynamics)
     -   [Importation and Stochasticity](#importation-and-stochasticity)
--   [Parameterization](#parameterization)
+-   [Calibration](#calibration)
     -   [Modify Default Values](#modify-default-values)
     -   [Express Uncertainty in Model
         Parameters](#express-uncertainty-in-model-parameters)
