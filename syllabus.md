@@ -47,12 +47,12 @@ The workshop will take place on March 20, 2025 with the following schedule.
 | 10:15-11:00 | **Session 1a: Exploration**   |
 | 11:00-11:15 | **Break**                     |
 | 11:15-12:00 | **Session 1b: Exploration**   |
-| 12:00-1:00  | **Lunch**                     |
-| 1:00-1:45   | **Session 2: Calibration**    |
-| 1:45-2:00   | **Break**                     |
-| 2:00-2:45   | **Session 3: Inference**      |
-| 2:45-3:00   | **Break**                     |
-| 3:00-3:30   | **Session 4: Stratification** |
+| 12:00-1:15  | **Lunch**                     |
+| 1:15-2:00   | **Session 2: Calibration**    |
+| 2:00-2:15   | **Break**                     |
+| 2:15-3:00   | **Session 3: Inference**      |
+| 3:00-3:15   | **Break**                     |
+| 3:15-3:30   | **Session 4: Stratification** |
 | 3:30-3:45   | **Feedback**                  |
 | 3:45-4:00   | **Finishing and Packing Up**  |
 
@@ -97,25 +97,25 @@ There will not be enough time in the workshop to cover all of `macpan2`, so ther
 <!-- omit from toc -->
 #### Session 1: Exploration
 
-Participants will learn about the following types of tasks required for exploring model simulations.
+You will learn about the following types of tasks required for exploring model simulations.
 
-* Find simulation models in the `macpan2` [library](#library-models) of starter models.
-* Create simulation models from scratch.
+* Create simple compartmental simulation models.
+* Find simulation models in the `macpan2` [library of models](https://canmod.github.io/macpan2/articles/example_models).
 * Run, summarize, and visualize simulations.
 * Identify sets of model quantities to be calibrated.
 * Describe the relationships between the values of parameter inputs and simulated outputs.
-* Prepare certain [types of data](#types-of-data) so that they can be compared with `macpan2` simulation output, both visually and numerically.
-* Make [modifications to models](#model-modification-tools) in the library.
+* Make modifications to existing model specifications.
+* Prepare data so that they can be visually compared with simulation output.
 * Understand the mathematics behind simulation models.
-* Cast a model as a particular [dynamical model type](#dynamical-model-types) (e.g. discrete-time recursion, ordinary differential equation).
+* Cast a model as a particular dynamical model type (e.g. discrete-time recursion, ordinary differential equation).
 
 
 <!-- omit from toc -->
 #### Session 2: Calibration
 
-Participants will learn about the following types of tasks required for parameterizing models, for exploring scenarios and making inferences and predictions about a particular population and public health problem.
+You will learn about the following types of tasks required for parameterizing models, for exploring scenarios and making inferences and predictions about a particular population and public health problem.
 
-* Use [optimization](#optimization) to calibrate parameters (e.g., transmission rate) so that the discrepancy between observed and simulated data is minimized.
+* Use optimization to calibrate parameters (e.g., transmission rate) so that the discrepancy between observed and simulated data is minimized.
 * Apply basic troubleshooting techniques when optimization fails.
 * Express uncertainty in model parameters (e.g., transmission rate) with prior distributions.
 * Calibrate the functional form of time-variation of parameters.
@@ -124,19 +124,19 @@ Participants will learn about the following types of tasks required for paramete
 <!-- omit from toc -->
 #### Session 3: Inference
 
-Participants will learn about the following types of tasks that are often necessary when making inferences using calibrated models.
+You will learn about the following types of tasks that are often necessary when making inferences using calibrated models.
 
 * Visualize goodness-of-fit.
 * Generate confidence intervals for estimated parameters.
 * Deciding when to refine parameter calibrations
 * Forecast model variables beyond the last data point.
 * Calculate prediction intervals measuring uncertainty about these forecasts.
-* Compare alternative scenarios for counter-factual causal analysis (e.g., how many deaths were saved due to vaccination?).
+* Compare alternative scenarios for counter-factual causal analysis.
 
 <!-- omit from toc -->
 #### Session 4: Stratification
 
-Participants will learn about the importance of stratification of simple compartmental models. We will not do anything hands on in this session.
+You will learn about the importance of stratification of simple compartmental models. We will not do anything hands on in this session as there will not be enough time.
 
 * Stratify every compartment in the same way (e.g. by age, location).
 * Stratify infectious compartments (e.g. by symptom status).
@@ -148,8 +148,7 @@ Participants will learn about the importance of stratification of simple compart
 
 After participating in the workshop, modellers will be able to do the following.
 
-* Determine if compartmental modelling is an appropriate tool for a particular applied public health problem.
-* Use `macpan2` to create a simple compartmental model for a real public health problem.
+* Use `macpan2` to create a simple compartmental model for a public health problem.
 * Navigate the [documentation](https://canmod.github.io/macpan2) to learn how to solve compartmental modelling problems that `macpan2` is able to solve.
 * Suggest improvements to `macpan2`.
 
