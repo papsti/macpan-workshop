@@ -31,7 +31,7 @@ mp_tmb_coef(cal)
 # a factor of 1.2 at time 60.
 beta_change = data.frame(matrix = "beta_multiplier", time = 60, value = 1.2)
 
-# step 5: create a forecaster with this scneario
+# step 5: create a forecaster with this scenario
 scen = mp_forecaster(cal, forecast_period_time_steps = 50
   , data = bind_rows(data, beta_change)
   , tv = "beta_multiplier"
