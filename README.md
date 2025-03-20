@@ -12,5 +12,6 @@ A [workshop](https://canmod.github.io/macpan-workshop/) on [macpan2](https://can
 * [Video resources](video-resources.md)
 * [Model library](https://github.com/canmod/macpan2/tree/main/inst/starter_models)
 * [Exploration Exercises](exploration-exercises.md)
+  * [Code/Answers](https://github.com/canmod/macpan-workshop/tree/main/code)
+  * [Small Example Data](https://github.com/canmod/macpan-workshop/tree/main/data)
 * [Companion Materials](companion-materials.md)
-* 
