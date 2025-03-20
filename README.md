@@ -7,7 +7,10 @@ A [workshop](https://canmod.github.io/macpan-workshop/) on [macpan2](https://can
 [cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
 
 
-* [Syllabus](syllabus.md)
-* [Model library](https://github.com/canmod/macpan2/tree/main/inst/starter_models)
 * [Technical preparation](technical-preparation.md)
+* [Syllabus](syllabus.md)
 * [Video resources](video-resources.md)
+* [Model library](https://github.com/canmod/macpan2/tree/main/inst/starter_models)
+* [Exploration Exercises](exploration-exercises.md)
+* [Companion Materials](companion-materials.md)
+* 

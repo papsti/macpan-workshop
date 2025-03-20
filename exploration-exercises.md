@@ -3,7 +3,7 @@ Exploration Exercises
 
 # Exploration
 
-## Recipes for Quick-and-Dirty Visualization
+## Recipes for Quick-and-Dirty Visualization of Simulations
 
 Simulations from `macpan2` come in a standard format with columns
 described
